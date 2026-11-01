@@ -152,10 +152,24 @@
   .nphrase .cn{font-family:"Noto Serif SC",serif;font-size:1.15rem;color:#f3efe2;font-weight:600;display:block;letter-spacing:.05em}
   .nphrase .en{font-family:var(--mono);font-size:.76rem;color:#b9b9c2;display:block;margin-top:.35rem;font-style:italic}
   .nphrase-glyph{display:block;height:44px;width:auto;margin:0 auto .5rem;filter:drop-shadow(0 3px 8px rgba(0,0,0,.5))}
+  .nvocab-label{font-family:var(--mono);font-size:.66rem;color:#8a8a93;text-align:center;margin:1.1rem 0 .3rem;letter-spacing:.04em}
+  .nvocab{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:0 auto;max-width:40rem}
+  .nvocab span{font-family:"Noto Serif SC",serif;font-size:.84rem;color:#ecdca6;background:rgba(0,0,0,.25);border:1px solid #4a4330;border-radius:.4rem;padding:.3rem .6rem}
+  .nvocab span b{font-weight:600;margin-right:.35rem}
+  .nwordgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem;max-width:44rem;margin:.5rem auto 0}
+  .nword{display:flex;align-items:center;gap:.7rem;background:rgba(0,0,0,.22);border:1px solid #4a4330;border-radius:.5rem;padding:.5rem .7rem}
+  .nword img{height:52px;width:42px;object-fit:contain;object-position:center;flex:0 0 42px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+  .nword .wl{display:flex;flex-direction:column;line-height:1.3}
+  .nword .wl b{font-family:"Noto Serif SC",serif;color:#ecdca6;font-size:1rem;font-weight:600}
+  .nword .wl span{font-family:var(--mono);font-size:.72rem;color:#b9b9c2}
   .mnode.why{border-left:2px solid var(--accent);padding-left:1rem;background:rgba(216,64,47,.06);border-radius:.4rem}
   .deckfig{margin:1.8rem auto;max-width:620px}
   .deckfig img{width:100%;border-radius:.6rem;border:1px solid #2c2c33;display:block}
   .deckfig figcaption{font-family:var(--mono);font-size:.68rem;color:#8a8a93;margin-top:.5rem}
+  .deckfig.galaxy{max-width:720px;margin:1.4rem auto .8rem;border:1px solid #2c2c33;border-radius:1rem;padding:1.1rem 1.1rem .3rem;overflow:hidden;
+    background:radial-gradient(ellipse 72% 82% at 44% 64%,#1b1533 0%,#100d1f 58%,#08070f 100%)}
+  .deckfig.galaxy img{border:none;border-radius:0;background:none;filter:drop-shadow(0 8px 30px rgba(90,70,170,.45))}
+  .deckfig.galaxy figcaption{text-align:center;color:#8a8a93;padding-bottom:.2rem}
   .world.nushu.finale{margin-top:1.6rem}
   .mapcap{font-family:var(--mono);font-size:.68rem;color:#8a8a93;text-align:center;margin:.2rem 0 0}
   .tape{display:block;max-width:440px;margin:1.2rem auto 0;border-radius:.6rem;overflow:hidden;transition:transform .2s ease;box-shadow:0 10px 30px rgba(0,0,0,.4)}
@@ -169,12 +183,16 @@
   .chatband{height:88px;overflow:hidden;margin:1.5rem 0;pointer-events:none;
     -webkit-mask-image:linear-gradient(to bottom,transparent,#000 32%,#000 68%,transparent);
     mask-image:linear-gradient(to bottom,transparent,#000 32%,#000 68%,transparent)}
-  .chatband .roll{display:flex;flex-direction:column;gap:.08rem;font-family:var(--mono);font-size:.8rem;
-    line-height:1.22;white-space:nowrap;padding:0 .2rem;will-change:transform;animation:chatup 54s linear infinite;color:rgba(207,207,202,.24)}
+  .chatband .roll{display:flex;flex-direction:column;gap:0;font-family:var(--mono);font-size:.8rem;
+    line-height:1.12;white-space:nowrap;padding:0 .2rem;will-change:transform;animation:chatvary 19s linear infinite;color:rgba(207,207,202,.24)}
+  .chatband .roll p{margin:0}
   .chatband .roll b{color:rgba(169,140,255,.6);margin-right:.45rem}
-  .chatband.b2 .roll{animation-duration:28s;color:rgba(236,220,166,.22)}
+  .chatband.b2 .roll{animation:chatvary2 13s linear infinite;color:rgba(236,220,166,.22)}
   .chatband.b2 .roll b{color:rgba(216,64,47,.5)}
-  @keyframes chatup{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+  /* varied pace: fast bursts, then near-stalls — like a live feed */
+  /* fast, accelerating to really fast */
+  @keyframes chatvary{0%{transform:translateY(0)}48%{transform:translateY(-16%)}80%{transform:translateY(-36%)}100%{transform:translateY(-50%)}}
+  @keyframes chatvary2{0%{transform:translateY(0)}52%{transform:translateY(-18%)}83%{transform:translateY(-38%)}100%{transform:translateY(-50%)}}
   @media (prefers-reduced-motion:reduce){.chatband .roll{animation:none}}
   /* flat breakdown — shots lie flat, arrows label each */
   .breakdown{display:flex;flex-direction:column;gap:1.2rem;background:var(--stage);color:var(--stage-ink);border-radius:1rem;padding:clamp(1.3rem,4vw,2.4rem)}
@@ -236,11 +254,69 @@
   .objlist li{font-size:.92rem;color:var(--muted);padding-left:1rem;border-left:1px solid var(--line)}
   .objlist li b{color:var(--ink);font-weight:600}
   .scriptpage{display:block;width:100%;max-width:540px;margin:1rem 0 0;border:1px solid var(--line);border-radius:.4rem;background:#fff}
+  /* paper haven — numbered exhibition sections */
+  .phsection{display:grid;grid-template-columns:2.6rem 1fr;gap:.2rem 1rem;padding:1.1rem 0;border-top:1px solid var(--line);align-items:start}
+  .phsection .snum{font-family:var(--mono);font-size:.78rem;color:var(--accent);letter-spacing:.06em;padding-top:.15rem}
+  .phsection h4{margin:0 0 .3rem;font-family:var(--disp);font-size:1.12rem;color:var(--ink);font-weight:500}
+  .phsection .sdate{font-family:var(--mono);font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-left:.5rem;font-weight:400}
+  .phsection p{margin:0;color:var(--ink);font-size:.94rem}
+  .phsection.coda .snum{color:var(--muted)}
+  /* clickable miniature archival photos */
+  .phplates{display:flex;flex-wrap:wrap;gap:.6rem;margin:.7rem 0 .2rem}
+  .phthumb{width:92px;cursor:zoom-in;border:1px solid var(--line);border-radius:.3rem;overflow:hidden;background:var(--panel);transition:transform .15s ease,box-shadow .15s ease;padding:0;display:block}
+  .phthumb img{display:block;width:100%;height:68px;object-fit:cover}
+  .phthumb figcaption{font-family:var(--mono);font-size:.56rem;color:var(--muted);padding:.25rem .3rem;line-height:1.3;white-space:normal}
+  .phthumb:hover,.phthumb:focus-visible{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.18);border-color:var(--accent);outline:none}
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;z-index:999;background:rgba(10,10,14,.92);display:none;align-items:center;justify-content:center;padding:4vw;cursor:zoom-out}
+  .lightbox.open{display:flex}
+  .lightbox figure{margin:0;max-width:min(1000px,92vw);max-height:92vh;display:flex;flex-direction:column;align-items:center}
+  .lightbox img{max-width:100%;max-height:78vh;object-fit:contain;border-radius:.3rem;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .lightbox figcaption{color:#e6e6e2;font-family:var(--mono);font-size:.8rem;line-height:1.5;margin-top:1rem;max-width:60ch;text-align:center}
+  .lightbox figcaption .ref{display:block;color:#9a9aa6;font-size:.68rem;margin-top:.4rem}
+  .lightbox .lbclose{position:absolute;top:1.2rem;right:1.4rem;color:#fff;font-size:1.6rem;font-family:var(--mono);background:none;border:none;cursor:pointer;line-height:1}
+  .shot.textshot{grid-template-columns:1fr}
+  /* eagle-eye install plan — ONE blown-up overhead, prints pinned on the rooms, wall text set around it */
+  .phstage{background:var(--panel);border:1px solid var(--line);border-radius:1rem;padding:clamp(1rem,3vw,1.8rem);margin:1.2rem 0 .4rem}
+  .phmap{display:grid;align-items:center;gap:clamp(.7rem,1.6vw,1.4rem);
+    grid-template-columns:minmax(150px,.92fr) minmax(440px,2.9fr) minmax(150px,.92fr);
+    grid-template-areas:"t1 plan t2" "t5 plan t3" "co plan t4"}
+  .phanno{font-size:.78rem;line-height:1.5}
+  .phanno.t1{grid-area:t1}.phanno.t2{grid-area:t2}.phanno.t3{grid-area:t3}.phanno.t4{grid-area:t4}.phanno.t5{grid-area:t5}.phanno.co{grid-area:co}
+  .phanno.t1,.phanno.t5,.phanno.co{text-align:right}
+  .phanno h4{margin:0;font-family:var(--disp);font-size:.98rem;color:var(--ink);font-weight:500;line-height:1.2}
+  .phanno h4 .an{font-family:var(--mono);font-size:.74rem;color:var(--accent);font-weight:700}
+  .phanno .ad{display:block;font-family:var(--mono);font-size:.56rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:.15rem 0 .4rem}
+  .phanno p{margin:0;color:var(--muted);font-size:.76rem;line-height:1.5}
+  .phanno.hl h4{color:var(--accent)}
+  .phplanarea{grid-area:plan;position:relative;container-type:inline-size;width:100%;margin:0 auto}
+  .phplanarea .plan{width:100%;height:auto;display:block}
+  .phpin{position:absolute;transform:translate(-50%,-50%) rotate(var(--r,-2deg));width:clamp(52px,9.8cqw,94px);margin:0;padding:3px;background:#fbfaf6;border:1px solid rgba(0,0,0,.12);border-radius:2px;box-shadow:0 3px 10px rgba(0,0,0,.28);cursor:zoom-in;transition:transform .16s ease,box-shadow .16s ease;z-index:3}
+  .phpin img{display:block;width:100%;height:auto;aspect-ratio:1/0.8;object-fit:cover;border-radius:1px}
+  .phpin figcaption{font-family:var(--mono);font-size:.5rem;line-height:1.2;color:#3a3a3a;text-align:center;padding:2px 1px 1px;white-space:normal}
+  .phpin .pinno{position:absolute;top:-7px;left:-7px;width:16px;height:16px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:.56rem;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+  .phpin:hover,.phpin:focus-visible,.phpin.pulse{transform:translate(-50%,-50%) rotate(0deg) scale(1.3);box-shadow:0 10px 26px rgba(0,0,0,.4);outline:none;z-index:20}
+  @media(max-width:820px){
+    .phmap{grid-template-columns:1fr;grid-template-areas:"plan" "t1" "t2" "t3" "t4" "t5" "co"}
+    .phanno{border-top:1px solid var(--line);padding-top:.6rem}
+    .phanno.t1,.phanno.t5,.phanno.co{text-align:left}
+    .phpin{width:clamp(44px,13cqw,80px)}
+    .phpin figcaption{font-size:.46rem}
+  }
+  .plan .stop{cursor:pointer}
+  .plan .stop .hit{fill:transparent}
+  .plan .stop .mk{fill:var(--panel);stroke:var(--accent);transition:fill .12s ease}
+  .plan .stop text{fill:var(--accent)}
+  .plan .stop.on .mk{fill:var(--accent)}
+  .plan .stop.on text{fill:#fff}
+  .plan .stop:focus-visible{outline:none}
+  .plan .stop:focus-visible .mk{stroke-width:2.4}
   footer{border-top:1px solid var(--line);padding-block:2rem 3rem;color:var(--muted);font-family:var(--mono);font-size:.72rem}
   @media (prefers-reduced-motion:reduce){.layer{transition:none}.chatroll{animation:none}.stage.spread .layer{animation:none}.nglyphs{animation:none}.mq{animation:none}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500;700&family=Noto+Serif+SC:wght@600&display=swap">
-
+</head>
+<body>
 <header>
   <div class="wrap bar">
     <span class="brand">Eden Z. <span class="brandcn">(漳)</span> <span class="branddot">·</span> <span class="brandcn">鑑霈</span></span>
@@ -278,34 +354,34 @@
     <div class="whead"><span class="wnum">01</span><h2>"fruit"</h2><span class="wtag">found-footage film · 2026</span></div>
     <p class="wnarr"><em>"fruit"</em> is an archival film about existence as a blip in the matrix, nature as insurmountable, and the nihilist certainty that everything is as it should be. I green-screened myself — small, vaping — over a torrent of borrowed footage: the 1927 silent exploitation film <em>Is Your Daughter Safe?</em>, the instructional documentary "The Growth of Plants," a nuclear mushroom cloud, Barney, a cosmic tardigrade — all under Werner Herzog's monologue from <em>Burden of Dreams</em> (1982) on the misery of the jungle. Nothing is original footage; the compositing <em>is</em> the argument — the human as a tiny, unbothered blip in an overwhelming, amoral nature.</p>
     <div class="breakdown">
-      <div class="marquee" aria-hidden="true"><div class="mq">we are challenging nature itself — and it hits back &nbsp;·&nbsp; nature here is vile and base &nbsp;·&nbsp; the birds just screech in pain &nbsp;·&nbsp; a land that God created in anger &nbsp;·&nbsp; there is no harmony in the universe &nbsp;·&nbsp; I love it against my better judgment &nbsp;·&nbsp; we are challenging nature itself — and it hits back &nbsp;·&nbsp; nature here is vile and base &nbsp;·&nbsp; the birds just screech in pain &nbsp;·&nbsp; a land that God created in anger &nbsp;·&nbsp; there is no harmony in the universe &nbsp;·&nbsp; I love it against my better judgment &nbsp;·&nbsp;</div></div>
-      <p class="mqcap">↑ Werner Herzog's <em>Burden of Dreams</em> monologue — the found audio running under everything</p>
-
+      <div class="marquee"><span class="mq">we are challenging nature itself &mdash; and it hits back &middot; it is full of obscenity &middot; fornication and asphyxiation and choking and fighting for survival &middot; the birds do not sing, they screech in pain &middot; there is no harmony in the universe &middot; I love it &mdash; against my better judgment &middot; we are challenging nature itself &mdash; and it hits back &middot; it is full of obscenity &middot; fornication and asphyxiation and choking and fighting for survival &middot; the birds do not sing, they screech in pain &middot; there is no harmony in the universe &middot; I love it &mdash; against my better judgment &middot; </span></div>
+      <p class="mqcap">Werner Herzog's <em>Burden of Dreams</em> (1982) monologue over borrowed footage &mdash; shot by shot, nothing originally mine</p>
       <div class="shot">
-        <img src="img/fruit-1.jpg" alt="botanical archive, plants growing">
-        <div class="desc"><span class="arrow">◂</span><div><span class="slabel">① The Growth of Plants (1927)</span><p>Instructional-film archive of plants growing — time-lapse botany, borrowed whole.</p></div></div>
+        <img src="img/fruit-1.jpg" alt="black-and-white time-lapse of plant stems, a tiny red figure composited below">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9312; <em>The Growth of Plants</em> (1927)</span><p>An instructional documentary &mdash; stems climbing, seeds splitting open in time-lapse. I am composited in, small and in red, standing under the growth.</p></div></div>
       </div>
       <div class="shot">
-        <img src="img/fruit-2.jpg" alt="silent exploitation film, bodies">
-        <div class="desc"><span class="arrow">◂</span><div><span class="slabel">② Is Your Daughter Safe? (1927)</span><p>The silent exploitation film — the bodies, the "fornication" Herzog narrates over.</p></div></div>
+        <img src="img/fruit-2.jpg" alt="black-and-white silent-film figures by rock, a tiny red figure composited below">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9313; <em>Is Your Daughter Safe?</em> (1927)</span><p>A silent exploitation film &mdash; the "obscenity" and "fornication" Herzog narrates, lifted whole and run underneath him.</p></div></div>
       </div>
       <div class="shot">
-        <img src="img/fruit-4.jpg" alt="egg and sperm fertilization under microscope">
-        <div class="desc"><span class="arrow">◂</span><div><span class="slabel">③ Archival microscopy — egg &amp; sperm fertilization</span><p>Archival microscopy of egg and sperm fertilizing — the human body reduced to the same borrowed footage as the plants.</p></div></div>
+        <img src="img/fruit-4.jpg" alt="microscopy of egg cells and sperm, a tiny figure composited below">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9314; archival microscopy &mdash; egg &amp; sperm fertilization</span><p>Cells under glass, the egg and the sperm. Creation at the scale where it looks like weather, not miracle.</p></div></div>
       </div>
       <div class="shot">
-        <img src="img/fruit-hero.jpg" alt="Herzog superimposed over growing plants">
-        <div class="desc"><span class="arrow">◂</span><div><span class="slabel">④ Herzog, superimposed</span><p>Herzog from <em>Burden of Dreams</em> dissolved into growing plants — the human body and the plant body, one superimposition.</p></div></div>
+        <img src="img/fruit-3.jpg" alt="Werner Herzog's face superimposed into green foliage, a tiny red figure below">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9315; Herzog, superimposed into the growing plants</span><p>His face from <em>Burden of Dreams</em> dissolved into the leaves &mdash; the human body made a plant body, the monologue's spine made literal.</p></div></div>
       </div>
       <div class="shot">
-        <img src="img/fruit-5.jpg" alt="volcano erupting, the artist dancing over it">
-        <div class="desc"><span class="arrow">◂</span><div><span class="slabel">⑤ Volcano — the power of nature</span><p>I'm dancing over scenes of natural disaster — a volcano erupting, the earth cracking open over cities. Nature is insurmountable; I'm a tiny green-screened figure, vaping, unbothered.</p></div></div>
+        <img src="img/fruit-5.jpg" alt="an erupting volcano, Joyce doubled and dancing in red in the foreground">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9316; the volcano &mdash; the power of nature</span><p>A real eruption. I dance over the disaster, doubled, unbothered &mdash; the nihilist shrug the whole film rides on: everything is as it should be.</p></div></div>
       </div>
       <div class="legend">
-        <span><b>archive</b> 1927 public domain</span>
-        <span><b>method</b> green-screen composite</span>
-        <span><b>audio</b> Herzog VO (above)</span>
-        <span><b>signature</b> the inserted self, vaping</span>
+        <span><b>footage</b> 100% borrowed</span>
+        <span><b>self</b> composited small &middot; vaping</span>
+        <span><b>spine</b> Herzog, <em>Burden of Dreams</em></span>
+        <span><b>argument</b> the human = a blip</span>
+        <span><b>tone</b> deadpan nihilist</span>
       </div>
     </div>
   </section>
@@ -429,31 +505,41 @@
   <!-- BODY NOOD -->
   <section id="noodle" class="work">
     <div class="whead"><span class="wnum">03</span><h2>The Body, Nood</h2><span class="wtag">wordless image collage · 2026</span></div>
-    <p class="wnarr"><em>The Body, Nood</em> is a narrative short about my alter ego metamorphosizing into a noodle. Rather than treating the body as a container for the self, it imagines the body as a <em>continuation of the world</em> — deliberately collapsing categories usually kept apart: body and landscape, pleasure and disgust, self and environment. There's no script; it's a wordless collage that intercuts my own footage with found war and cinema clips and food macros until the woman and the noodle are the same material.</p>
-    <div class="stagewrap">
-      <div class="controls"><span class="hint">▲ body → noodle → world</span><button class="btn" data-explode>explode ⊕</button></div>
-      <div class="stage" id="stage-noodle">
-        <div class="layer" style="--d:-1.9"><img src="img/nood-1.jpg" alt="bare feet with red toenails in snow, yellow noodles over them"><span class="lbl">1 · body in the landscape</span></div>
-        <div class="layer" style="--d:-0.6">
-          <div class="txtlayer"><span class="src">2 · found footage — war</span>Sniper scopes, convoys in the crosshairs. <em>"There weren't supposed to be hostiles that close."</em></div>
-          <span class="lbl">2 · found war footage</span>
-        </div>
-        <div class="layer" style="--d:0.5">
-          <div class="txtlayer"><span class="src">3 · found footage — cinema</span>A ramen-shop kitchen, noodles lifted from a bowl — <em>Tampopo</em> (1985, Juzo Itami) threaded through.</div>
-          <span class="lbl">3 · Tampopo (1985)</span>
-        </div>
-        <div class="layer" style="--d:1.6"><img src="img/nood-2.jpg" alt="a face covered in yellow noodle-hair"><span class="lbl">4 · the metamorphosis</span></div>
-        <div class="layer" style="--d:2.6"><img src="img/nood-3.jpg" alt="forehead pressed to a tree trunk"><span class="lbl">5 · body → landscape</span></div>
+    <p class="wnarr"><em>The Body, Nood</em> is a narrative short about my alter ego metamorphosing into a noodle. Rather than treating the body as a container for the self, it imagines the body as a <em>continuation of the world</em> — collapsing categories usually kept apart: body and landscape, pleasure and disgust, self and environment. There is no script; it's a wordless collage that intercuts my own footage with found war and cinema clips, archival immigration film, and food macros until the woman and the noodle are the same material.</p>
+    <div class="breakdown">
+      <p class="mqcap">what it's cut from — shot by shot, no words</p>
+      <div class="shot">
+        <img src="img/nood-field.jpg" alt="a lone figure in a snowy winter wheat field">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9312; the body in the landscape</span><p>A lone figure in a wide winter wheat field, noodles in hand — the body set into the world before anything is done to it.</p></div></div>
+      </div>
+      <div class="shot textshot">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9313; the smash cut — found war footage</span><p>People eating at a picnic, the frame tightening until we are watching them <b>through a sniper's scope</b> — then a <b>smash-cut</b> to a Spielberg-scale blockbuster: the sniper fires. A subtitle floats up, <em>"There weren't supposed to be hostiles that close."</em> To look at someone, the cut argues, is already to take aim.</p></div></div>
+      </div>
+      <div class="shot textshot">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9314; archival immigration — Angel Island</span><p>Archival footage of Chinese immigration at <em>Angel Island, San Francisco</em> — the West-Coast station where arriving Chinese were detained, examined, catalogued. Bodies inspected and held.</p></div></div>
+      </div>
+      <div class="shot textshot">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9315; <em>Tampopo</em> (1985, Juzo Itami)</span><p>A ramen-shop kitchen; noodles lifted steaming from a bowl. Itami's <em>Tampopo</em> threaded through — where food is appetite, ritual and comedy at once.</p></div></div>
+      </div>
+      <div class="shot">
+        <img src="img/nood-lecture.jpg" alt="A lecture hall with GLOBAL SOUTH on the chalkboard; lecturer and students all eating takeout noodles, several turned to the camera">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9316; the lecture hall</span><p>Under <em>GLOBAL SOUTH</em> chalked on the board, an entire seminar &mdash; lecturer at the podium, students in the seats &mdash; eats takeout noodles and turns, as one, to face the camera. The subject is being studied; the room studies back.</p></div></div>
+      </div>
+      <div class="shot">
+        <img src="img/nood-grocery.jpg" alt="Joyce at the grocery-store customer-service counter, noodles in the foreground">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9317; the grocery store — "bing chilling"</span><p>At the checkout, a clerk with konjac noodles hanging from her own mouth asks: <em>"No bing chilling for you?"</em> — then, <em>"Do you speak English?"</em> John Cena first said <em>&#20912;&#28107;&#28107; ("ice cream")</em> in good faith, an actor genuinely trying to learn Mandarin — and it curdled into a meme that people of his <em>own</em> background then used to <b>mock Asian creators</b> across Instagram and TikTok. That turn is the film's hinge: a sincere crossing-over, repackaged as a bit to perform <em>at</em> Asian people. To be read as Chinese becomes to be read as consumable.</p></div></div>
+      </div>
+      <div class="shot">
+        <img src="img/nood-meta.jpg" alt="Joyce with noodle-hair, forehead pressed to a tree trunk">
+        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9318; the metamorphosis &#8594; body &amp; landscape</span><p>Her hair becomes yellow noodle; forehead to tree trunk, the body dissolves back into the field it began in. She never says the clerk's line — she becomes the noodle. Woman, noodle and world are finally one material.</p></div></div>
       </div>
       <div class="legend">
         <span><b>collapse</b> body / landscape</span>
         <span><b>collapse</b> pleasure / disgust</span>
         <span><b>collapse</b> self / environment</span>
+        <span><b>the gaze</b> looking = targeting</span>
         <span><b>material</b> woman = noodle</span>
         <span><b>sound</b> wordless</span>
-      </div>
-      <div class="filmstrip">
-        <img src="img/nood-1.jpg" alt=""><img src="img/nood-2.jpg" alt=""><img src="img/nood-3.jpg" alt="">
       </div>
     </div>
   </section>
@@ -461,72 +547,92 @@
   <!-- PAPER HAVEN -->
   <section id="paper-haven" class="work">
     <div class="whead"><span class="wnum">04</span><h2>The Paper Haven</h2><span class="wtag">exhibition · research</span></div>
-    <p class="wnarr">An exhibition built from research on Jewish refugees in wartime Shanghai — David Ludwig Bloch's woodcuts, photographs of the Hongkew ghetto, the visas issued by the diplomat Ho Feng-Shan, a refugee's passport — and the question of who gets to keep a history. The process here is spatial, so the "layers" are walls: this is the show as an overhead plan.</p>
+    <p class="wnarr">An exhibition built from research on Jewish refugees in wartime Shanghai — David Ludwig Bloch's woodcuts, photographs of the Hongkew ghetto, the visas issued by the diplomat Ho Feng-Shan, a refugee's passport — and the question of who gets to keep a history. The process here is spatial, so the whole show is laid out as one overhead plan — <b>its archival prints hung around the room like works on the wall.</b></p>
+    <p class="phbody" style="max-width:46rem">Until August 1939, Shanghai was the only port in the world where a refugee could land without a visa — no single authority controlled immigration. By 1941 about twenty thousand European Jews had arrived, most in Hongkou, a district bombed flat in 1937, among Chinese families who had lost homes of their own. <b>This is a lesser-known passage of the Second World War: a door out of Europe that no government opened.</b> What made it passable was a series of personal decisions.</p>
     <p><a class="fulllink" href="paper-haven/" target="_blank" rel="noopener">◇ View the full exhibition — The Paper Haven →</a></p>
-    <div class="planwrap">
-      <svg viewBox="0 0 820 520" class="plan" role="img" aria-label="Overhead floor plan of The Paper Haven exhibition">
-        <!-- walls (west wall left open as the entry) -->
-        <g fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="square">
-          <line x1="250" y1="96" x2="570" y2="96"/>
-          <line x1="570" y1="96" x2="570" y2="396"/>
-          <line x1="250" y1="396" x2="570" y2="396"/>
-          <line x1="250" y1="96" x2="250" y2="300"/>
-          <line x1="250" y1="350" x2="250" y2="396"/>
+    <div class="phstage">
+      <div class="phmap">
+      <div class="phanno t1" data-sec="1"><h4><span class="an">&sect;1</span> Vienna</h4><span class="ad">1938&ndash;39 &middot; leaving the Reich</span><p>The Anschluss, Évian, Kristallnacht &mdash; and the one document that made an exit possible. Consul Ho Feng-Shan stamped thousands of visas against his ambassador’s orders.</p></div>
+      <div class="phanno t2" data-sec="2"><h4><span class="an">&sect;2</span> The Passage</h4><span class="ad">Trieste &rarr; Shanghai</span><p>The ~25-day sea route to the only port on earth that asked no visa &mdash; a city where being read as European had long placed you above the Chinese.</p></div>
+      <div class="phanno t3" data-sec="3"><h4><span class="an">&sect;3</span> Little Vienna</h4><span class="ad">Hongkou</span><p>Cafés, German-language newspapers, an artists’ association &mdash; rebuilt in a bombed district shared with Chinese neighbours who learned Yiddish-inflected German.</p></div>
+      <div class="phanno t4" data-sec="4"><h4><span class="an">&sect;4</span> The Paper Dies</h4><span class="ad">February 1943</span><p>The order into the Designated Area. The word on the proclamation is not “Jewish.” It is “stateless” &mdash; a status the Reich had assigned them.</p></div>
+      <div class="phanno t5" data-sec="5"><h4><span class="an">&sect;5</span> Stateless</h4><span class="ad">1945&ndash;47</span><p>After the surrender: still stateless, but relief now from an army that won, and somewhere to go. The <em>Marine Falcon</em> sails for Naples.</p></div>
+      <div class="phanno co" data-sec="coda"><h4><span class="an">coda</span> 再见 Zai Jian</h4><span class="ad">the neighbours who stayed</span><p>The refugees left; their neighbours in Hongkou stayed. The show ends on the question underneath all of it: who gets to keep a history?</p></div>
+      <div class="phplanarea">
+      <svg viewBox="0 0 860 560" class="plan" role="img" aria-label="Interactive overhead install plan of The Paper Haven, five sections and a coda">
+        <g fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="square">
+          <line x1="210" y1="90" x2="650" y2="90"/>
+          <line x1="650" y1="90" x2="650" y2="470"/>
+          <line x1="210" y1="470" x2="650" y2="470"/>
+          <line x1="210" y1="90" x2="210" y2="250"/>
+          <line x1="210" y1="320" x2="210" y2="470"/>
         </g>
-        <!-- works on walls -->
-        <g fill="rgba(216,64,47,.16)" stroke="var(--accent)" stroke-width="1.5">
-          <rect x="296" y="88" width="34" height="8"/><rect x="360" y="88" width="34" height="8"/><rect x="424" y="88" width="34" height="8"/>
-          <rect x="562" y="150" width="8" height="44"/><rect x="562" y="238" width="8" height="44"/>
-          <rect x="300" y="392" width="54" height="8"/><rect x="446" y="392" width="70" height="8"/>
-          <rect x="242" y="150" width="8" height="48"/>
+        <g fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="square">
+          <line x1="360" y1="90" x2="360" y2="208"/>
+          <line x1="500" y1="470" x2="500" y2="352"/>
         </g>
-        <!-- leader lines -->
-        <g stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3" fill="none">
-          <line x1="393" y1="88" x2="393" y2="60"/>
-          <line x1="570" y1="172" x2="606" y2="172"/>
-          <line x1="570" y1="260" x2="606" y2="260"/>
-          <line x1="327" y1="400" x2="327" y2="430"/>
-          <line x1="481" y1="400" x2="481" y2="462"/>
-          <line x1="242" y1="174" x2="150" y2="174"/>
+        <path d="M210 250 L172 250 L172 320 L210 320" fill="none" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <g fill="rgba(216,64,47,.18)" stroke="var(--accent)" stroke-width="1.4">
+          <rect x="230" y="84" width="42" height="9"/><rect x="286" y="84" width="42" height="9"/>
+          <rect x="400" y="84" width="42" height="9"/><rect x="470" y="84" width="54" height="9"/>
+          <rect x="647" y="130" width="9" height="46"/><rect x="647" y="210" width="9" height="46"/>
+          <rect x="520" y="467" width="60" height="9"/><rect x="596" y="467" width="42" height="9"/>
+          <rect x="300" y="467" width="48" height="9"/><rect x="372" y="467" width="60" height="9"/>
+          <rect x="207" y="360" width="9" height="60"/>
+          <rect x="356" y="120" width="9" height="54"/><rect x="496" y="384" width="9" height="54"/>
         </g>
-        <!-- labels -->
-        <g fill="var(--ink)" font-family="IBM Plex Mono, monospace" font-size="11">
-          <text x="393" y="52" text-anchor="middle">David Ludwig Bloch — woodcuts</text>
-          <text x="612" y="169" text-anchor="start">Hongkew ghetto</text>
-          <text x="612" y="263" text-anchor="start">photographs</text>
-          <text x="327" y="444" text-anchor="middle">Ho Feng-Shan visas</text>
-          <text x="481" y="476" text-anchor="middle">Wall text — Chinese neighbours</text>
-          <text x="146" y="171" text-anchor="end">Passport —</text>
-          <text x="146" y="185" text-anchor="end">Hermine Moser</text>
+        <path d="M185 285 L250 285 Q300 285 300 152 L430 152 Q556 152 556 262 L556 402 Q556 432 430 432 L300 432 Q250 432 250 362" stroke="var(--accent)" stroke-width="1.3" stroke-dasharray="2 5" fill="none" opacity=".75"/>
+        <rect x="400" y="266" width="70" height="26" rx="4" fill="none" stroke="var(--muted)" stroke-width="1.2"/>
+        <text x="435" y="283" text-anchor="middle" fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="8">bench</text>
+        <g fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="10" opacity=".55">
+          <text x="285" y="118" text-anchor="middle">§1</text>
+          <text x="505" y="118" text-anchor="middle">§2</text>
+          <text x="625" y="300" text-anchor="middle">§3</text>
+          <text x="600" y="455" text-anchor="middle">§4</text>
+          <text x="300" y="455" text-anchor="middle">§5</text>
         </g>
-        <!-- entry + title -->
+        <text x="150" y="292" text-anchor="end" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="10">entry →</text>
         <g font-family="IBM Plex Mono, monospace">
-          <text x="150" y="322" text-anchor="middle" fill="var(--accent)" font-size="11">entry →</text>
-          <path d="M250 325 Q320 325 360 270 T470 210" stroke="var(--muted)" stroke-width="1" stroke-dasharray="1 5" fill="none"/>
-          <text x="410" y="236" text-anchor="middle" fill="var(--ink)" font-size="13" letter-spacing="2">THE PAPER HAVEN</text>
-          <text x="410" y="254" text-anchor="middle" fill="var(--muted)" font-size="9" letter-spacing="1">overhead install plan</text>
+          <text x="430" y="332" text-anchor="middle" fill="var(--ink)" font-size="13" letter-spacing="2">THE PAPER HAVEN</text>
+          <text x="430" y="348" text-anchor="middle" fill="var(--muted)" font-size="9" letter-spacing="1">~40 linear ft at full length · tap a room to flash it</text>
+        </g>
+        <g stroke="var(--muted)" stroke-width="1.2" fill="var(--muted)">
+          <line x1="705" y1="122" x2="705" y2="92"/>
+          <path d="M705 88 l-4 8 l8 0 z" stroke="none"/>
+          <text x="705" y="136" text-anchor="middle" stroke="none" font-family="IBM Plex Mono, monospace" font-size="9">N</text>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="8" fill="var(--muted)">
+          <g stroke="var(--ink)" stroke-width="1.4">
+            <line x1="210" y1="522" x2="310" y2="522"/>
+            <line x1="210" y1="518" x2="210" y2="526"/><line x1="260" y1="519" x2="260" y2="525"/><line x1="310" y1="518" x2="310" y2="526"/>
+          </g>
+          <text x="208" y="538" text-anchor="start" stroke="none">0</text>
+          <text x="312" y="538" text-anchor="start" stroke="none">10 ft</text>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="10" font-weight="700">
+          <g class="stop" data-sec="1" tabindex="0" role="button" aria-label="Section 1, Vienna"><circle class="hit" cx="255" cy="152" r="17"/><circle class="mk" cx="255" cy="152" r="9"/><text x="255" y="156" text-anchor="middle">1</text></g>
+          <g class="stop" data-sec="2" tabindex="0" role="button" aria-label="Section 2, The Passage"><circle class="hit" cx="455" cy="152" r="17"/><circle class="mk" cx="455" cy="152" r="9"/><text x="455" y="156" text-anchor="middle">2</text></g>
+          <g class="stop" data-sec="3" tabindex="0" role="button" aria-label="Section 3, Little Vienna"><circle class="hit" cx="556" cy="300" r="17"/><circle class="mk" cx="556" cy="300" r="9"/><text x="556" y="304" text-anchor="middle">3</text></g>
+          <g class="stop" data-sec="4" tabindex="0" role="button" aria-label="Section 4, The Paper Dies"><circle class="hit" cx="465" cy="432" r="17"/><circle class="mk" cx="465" cy="432" r="9"/><text x="465" y="436" text-anchor="middle">4</text></g>
+          <g class="stop" data-sec="5" tabindex="0" role="button" aria-label="Section 5, Stateless"><circle class="hit" cx="300" cy="432" r="17"/><circle class="mk" cx="300" cy="432" r="9"/><text x="300" y="436" text-anchor="middle">5</text></g>
+          <g class="stop" data-sec="coda" tabindex="0" role="button" aria-label="Coda, Zai Jian"><circle class="hit" cx="211" cy="390" r="17"/><circle class="mk" cx="211" cy="390" r="9"/><text x="211" y="393" text-anchor="middle" font-size="7">再见</text></g>
         </g>
       </svg>
-      <p class="note light">Eagle-eye install plan — red boxes are works, the open west wall is the entry, the dotted path is the visitor route. Archival images get placed only where rights allow; credits per piece.</p>
+        <figure class="phpin" data-sec="1" tabindex="0" style="left:30%;top:24%;--r:-4deg" data-full="img/ph-moser.jpg" data-cap="Passport of Hermine Moser, issued by the Police President of Vienna, 17 February 1939 &mdash; the Reich eagle stamped across the edge of her photograph. She was seventeen." data-ref="Yad Vashem Photo Archive, Jerusalem &middot; 14483411"><img src="img/ph-moser.jpg" alt="Passport of Hermine Moser" loading="lazy"><span class="pinno">1</span><figcaption>Passport &mdash; Hermine Moser, 1939</figcaption></figure>
+        <figure class="phpin" data-sec="1" tabindex="0" style="left:37.5%;top:33%;--r:3deg" data-full="img/ph-ho.jpg" data-cap="Ho Feng-Shan, Consul General of China in Vienna, who signed thousands of visas for Jews fleeing the Reich. Named Righteous Among the Nations, 2000." data-ref="Yad Vashem Photo Archive, Jerusalem &middot; 14483410"><img src="img/ph-ho.jpg" alt="Portrait of Ho Feng-Shan" loading="lazy"><span class="pinno">1</span><figcaption>Ho Feng-Shan, Consul</figcaption></figure>
+        <figure class="phpin" data-sec="2" tabindex="0" style="left:59%;top:25%;--r:-2deg" data-full="img/ph-bund.jpg" data-cap="The port of Shanghai along the Bund, picture postcard, c. 1930&ndash;37 &mdash; the foreign banks on one side of the road, the river traffic on the other. This is the Shanghai the refugees sailed into." data-ref="United States Holocaust Memorial Museum &middot; 37371"><img src="img/ph-bund.jpg" alt="The Bund, Shanghai" loading="lazy"><span class="pinno">2</span><figcaption>The Bund they sailed into</figcaption></figure>
+        <figure class="phpin" data-sec="3" tabindex="0" style="left:66%;top:39%;--r:3deg" data-full="img/ph-rickshaw.jpg" data-cap="Self-portrait in a rickshaw, watercolour by David Ludwig Bloch, 1943 &mdash; he paints himself as the passenger, holding a fan, pulled at a run by a barefoot Chinese man." data-ref="Courtesy of the Leo Baeck Institute"><img src="img/ph-rickshaw.jpg" alt="Bloch self-portrait in a rickshaw" loading="lazy"><span class="pinno">3</span><figcaption>Bloch &mdash; self-portrait in a rickshaw</figcaption></figure>
+        <figure class="phpin" data-sec="3" tabindex="0" style="left:69%;top:55%;--r:-3deg" data-full="img/ph-bookseller.jpg" data-cap="Harry Fiedler with a bookseller and fortune-teller, Tongshan Road, 1946 &mdash; the street the Goldstaub family lived on." data-ref="United States Holocaust Memorial Museum &middot; 04106"><img src="img/ph-bookseller.jpg" alt="Harry Fiedler with a bookseller" loading="lazy"><span class="pinno">3</span><figcaption>A bookseller, Tongshan Rd, 1946</figcaption></figure>
+        <figure class="phpin" data-sec="4" tabindex="0" style="left:64%;top:74%;--r:3deg" data-full="img/ph-proclamation.jpg" data-cap="Proclamation of 18 February 1943, as printed in the North-China Daily News &mdash; issued by the Japanese army and navy authorities, applying to every stateless refugee who had reached Shanghai since 1937." data-ref="United States Holocaust Memorial Museum"><img src="img/ph-proclamation.jpg" alt="The February 1943 proclamation" loading="lazy"><span class="pinno">4</span><figcaption>Proclamation, 18 Feb 1943</figcaption></figure>
+        <figure class="phpin" data-sec="4" tabindex="0" style="left:53%;top:73%;--r:-4deg" data-full="img/ph-woodcut.jpg" data-cap="&ldquo;Shanghai Ghetto,&rdquo; woodcut by David Ludwig Bloch, 1943&ndash;45 &mdash; built from fragments of official notices and stamps. COLOUR BLUE and COLOUR PINK were the two pass grades." data-ref="Courtesy of the Leo Baeck Institute"><img src="img/ph-woodcut.jpg" alt="Bloch Shanghai Ghetto woodcut" loading="lazy"><span class="pinno">4</span><figcaption>Bloch &mdash; &ldquo;Shanghai Ghetto&rdquo;</figcaption></figure>
+        <figure class="phpin" data-sec="5" tabindex="0" style="left:29%;top:70%;--r:-3deg" data-full="img/ph-chanukah.jpg" data-cap="Chanukah greetings card, Jewish Welfare Board, 1945 &mdash; given to refugee children by ‘big brothers’ in the American army, printed in English, Hebrew and Chinese. The dollar was still tucked behind it." data-ref="United States Holocaust Memorial Museum &middot; 03665"><img src="img/ph-chanukah.jpg" alt="Chanukah card 1945" loading="lazy"><span class="pinno">5</span><figcaption>Chanukah card, US Army, 1945</figcaption></figure>
+        <figure class="phpin" data-sec="5" tabindex="0" style="left:40%;top:75%;--r:3deg" data-full="img/ph-marinefalcon.jpg" data-cap="A last farewell from the deck of the Marine Falcon, Shanghai, January 1947 &mdash; 952 refugees bound for Naples by way of Suez. Their neighbours in Hongkou stayed." data-ref="United Nations Archives &middot; photograph by Larry Gahn"><img src="img/ph-marinefalcon.jpg" alt="Departing on the Marine Falcon" loading="lazy"><span class="pinno">5</span><figcaption>Leaving on the <em>Marine Falcon</em>, 1947</figcaption></figure>
+      </div>
+      </div>
+      <p class="note light">A blown-up overhead of the install &mdash; the archival prints laid in the rooms they belong to, the wall text set around them. <b>Tap any print to enlarge</b> it with its full caption and archive credit; tap a numbered room to lift its prints.</p>
     </div>
 
     <div class="phtext">
-      <p class="phsub">The exhibition — "Jewish Refugees in Shanghai, 1938–1950"</p>
-      <div class="sections">
-        <span>Vienna</span><span>The Passage</span><span>Little Vienna</span><span>The Paper Dies</span><span>Stateless</span><span>再见 Zai Jian</span>
-      </div>
-      <p class="phbody">Until August 1939, Shanghai was the only port in the world where a refugee could land without a visa — no single authority controlled immigration. By 1941 about twenty thousand European Jews had arrived, most in Hongkou, a district bombed flat in 1937, among Chinese families who had lost homes of their own. <b>This is a lesser-known passage of the Second World War: a door out of Europe that no government opened. What made it passable was a series of personal decisions</b> — a consul who kept signing visas against his ambassador's orders, a neighbour who took in a family, a man who rented a rickshaw to take a refugee child to school and home again.</p>
-      <blockquote class="pull">"These Chinese vendors or salesmen … would learn not only to speak German, but they would learn to speak Yiddish, with an Austrian dialect …"<cite>Susie Friedlander — Shanghai Jewish Community Oral History Collection, Muskie Archives, Bates College</cite></blockquote>
-      <blockquote class="pull">"And we had kosher Chinese food every Sunday for years and years."<cite>Sasson Jacoby — same collection</cite></blockquote>
-      <p class="phsub">On the walls — six of seventy-six</p>
-      <ul class="objlist">
-        <li><b>Chen</b>, a Chinese translator for the Shanghai city government, 1939–40.</li>
-        <li><b>Hanukkah card</b> in English, Hebrew and Chinese, 1945 — it held one American dollar, from "big brothers" in the US Army.</li>
-        <li><b>Harry Fiedler</b> with a bookseller and a fortune-teller, Tongshan Road, 1946.</li>
-        <li><b>Marriage certificate</b>, Shanghai, 4 December 1940 — under the Chinese Civil Code, certified by attorney Ching-Chao Yu.</li>
-        <li><b>"Shanghai Ghetto"</b>, woodcut by David Ludwig Bloch, 1943–45 — beneath a pass form stamped 通 (<em>tong</em>, to pass through).</li>
-        <li><b>Hermine Moser's passport</b> — stamped with permission to leave Vienna alive.</li>
-      </ul>
       <p class="phsub">The script that came out of it — <em>Little Vienna</em>, Act I</p>
       <p class="phbody">The research became a screenplay.</p>
       <blockquote class="pull">"The city wakes in layers."<cite>Little Vienna, Act I — Exile and Arrival (1933–1939)</cite></blockquote>
@@ -537,39 +643,32 @@
 
   <!-- SIGNAL'S UNIVERSE -->
   <section id="signal" class="work">
-    <div class="whead"><span class="wnum">05</span><h2>Signal's Universe</h2><span class="wtag">animated series · musicology · with Genie Deez</span></div>
-    <p class="wnarr"><em>Signal's Universe: The First Song</em> — a space opera where <b>sound is power</b>. Signal, a half-Chinese, half-Black music prodigy at an elite space academy, risks everything to hear her missing father's last transmission. It's a mind map before it's a script: each world is a real culture's language and music, and the map is how they connect.</p>
+    <div class="whead"><span class="wnum">05</span><h2>Signal's Universe</h2><span class="wtag">animated opera · musicology · with Genie Deez</span></div>
+    <p class="wnarr"><em>Signal's Universe: The First Song</em> is an animated space opera where <b>sound is power</b> — and, underneath that, an art project about <b>cultural preservation by adaptation</b>. Signal, a half-Chinese, half-Black music prodigy at an elite space academy, risks everything to hear her missing father's last transmission. Every world in it is built from a real, endangered language and music — carried across into something new, not sealed behind glass.</p>
+
+    <figure class="deckfig galaxy">
+      <img src="img/signal-galaxy.png" alt="a painted spiral galaxy, the universe of Signal">
+      <figcaption>the universe, painted</figcaption>
+    </figure>
+
     <div class="mm">
-      <p class="mhint">▸ the worlds Signal is built from — a multicultural opera, mapped</p>
-
-      <figure class="deckfig">
-        <img src="img/deck-title.jpg" alt="Signal's Universe pitch deck — title card">
-        <figcaption>From the pitch deck — <em>Signal's Universe: The First Song.</em></figcaption>
-      </figure>
-
-      <div class="mnode">
-        <span class="mstep">the premise — from the deck</span>
-        <h4>Music · Law · Resistance</h4>
-        <p>The pitch deck lays it out as three forces. In a galaxy where sound propels ships and shapes space itself, frequencies are currency and law — and <b>music is how the silenced resist</b>. Signal decodes her father's distorted transmissions and discovers some echoes never die. Tone: <em>Interstellar × Everything Everywhere All at Once × K-pop Demon Hunters.</em></p>
-      </div>
-
-      <figure class="deckfig">
-        <img src="img/deck-5.jpg" alt="Signal's Universe pitch deck — Story: Music, Law, Resistance">
-        <figcaption>From the pitch deck — the story, laid out as Music · Law · Resistance.</figcaption>
-      </figure>
-
       <div class="mnode why">
-        <span class="mstep">why I'm making this — my artist statement</span>
-        <h4>What does cultural preservation mean in this modern age?</h4>
-        <p>Every world here is built from a living language that is vanishing or already gone — Nüshu, the talking drum, the scripts and musics that time and empire have thinned out. That is the real question under the opera: when everything can be streamed, sampled and synthesized, what does it actually mean to <em>preserve</em> a culture — and who is allowed to carry it forward? Signal inherits her father's frequencies the way I inherited these tongues: partially, across distance, hoping someone still answers back.</p>
+        <span class="mstep">why I'm making it — the artist statement</span>
+        <h4>What does cultural preservation mean when the thing is already "preserved"?</h4>
+        <p>Nüshu already sits in archives and museum cases; technically, it is preserved. But a script kept behind glass is a dead one — and Nüshu was never read silently, it was <em>sung</em>. With the <b>Steinhaus/Zisson Graduate Research Grant at Brown's Pembroke Center</b>, I spent a project — <em>Reviving Nüshu: Women's Script as Modern Song</em> — translating its glyphs, melodies and meanings into an original song, co-written and recorded with <b>Genie</b>, and premiered it at a listening event at Brown. The question underneath it — <em>how can art translate linguistic disappearance into sonic presence?</em> — is the one <em>Signal's Universe</em> is built on. A dying language survives only if it can still be sung into something new. Moving a thing across — one tongue, one body, one era to the next — is not only my subject here; it is the operation. Translation as an act of care.</p>
       </div>
 
-      <p class="mapcap">▸ the map — four worlds, and the one that holds them together</p>
+      <figure class="deckfig">
+        <img src="img/deck-5.jpg" alt="the story — Music, Law, Resistance">
+        <figcaption>Music · Law · Resistance — Signal's story.</figcaption>
+      </figure>
+
+      <p class="mapcap">▸ the worlds Signal is built from — each a living language and its music</p>
       <div class="mbranches">
         <div class="world">
           <span class="wkey">home base</span>
           <h5>The Academy — a space school</h5>
-          <p>The conservatory at the center of the map: an elite music academy in orbit where Signal trains, and where every world's language and frequency collides.</p>
+          <p>The conservatory at the centre of the map: an elite music academy in orbit where Signal trains, and where every world's language and frequency collides.</p>
         </div>
         <div class="world">
           <span class="wkey">3I Atlas</span>
@@ -591,28 +690,28 @@
       <div class="world nushu finale">
         <span class="wkey">Moon People</span>
         <h5>女书 · Nüshu</h5>
-        <p class="nintro">Nüshu is the only script in the world made and used only by women — a syllabic writing passed hand to hand among the women of Jiangyong, Hunan, more often embroidered and sung than spoken. In <em>Signal's Universe</em> it becomes the language of the Moon People: the big one, the script that sings, that the whole map resolves into.</p>
-        <img class="nglyphs" src="img/nushu-glyphs.png" alt="Nüshu glyphs cut from the page, floating">
+        <p class="nintro">Nüshu is the only script in the world made and used only by women — a syllabic writing the women of Jiangyong, Hunan invented for themselves because they were kept from literacy, passed hand to hand on fans and handkerchiefs, beneath official notice. A record kept by people who were never meant to be keeping one. In <em>Signal's Universe</em> it becomes the language of the Moon People: the script that sings, that the whole map resolves into.</p>
+        <p class="nvocab-label">the characters, defined — six words</p>
+        <div class="nwordgrid">
+          <div class="nword"><img src="img/nw-hehi.png" alt="欢喜 written in Nüshu"><div class="wl"><b>欢喜</b><span>joy</span></div></div>
+          <div class="nword"><img src="img/nw-wuwei.png" alt="无畏 written in Nüshu"><div class="wl"><b>无畏</b><span>fearless</span></div></div>
+          <div class="nword"><img src="img/nw-duli.png" alt="独立 written in Nüshu"><div class="wl"><b>独立</b><span>independence</span></div></div>
+          <div class="nword"><img src="img/nw-pingan.png" alt="平安 written in Nüshu"><div class="wl"><b>平安</b><span>peace</span></div></div>
+          <div class="nword"><img src="img/nw-ziyou.png" alt="自由 written in Nüshu"><div class="wl"><b>自由</b><span>freedom</span></div></div>
+          <div class="nword"><img src="img/nw-jianding.png" alt="坚定 written in Nüshu"><div class="wl"><b>坚定</b><span>resolve</span></div></div>
+        </div>
+        <p class="nvocab-label">and the sentences — written in Nüshu, then Chinese, then English</p>
         <div class="nphrase-list">
-          <div class="nphrase"><span class="cn">自由如风</span><span class="en">free as the wind</span></div>
-          <div class="nphrase"><img class="nphrase-glyph" src="img/nushu-mountain.png" alt="我本是高山而非溪流 written in Nüshu"><span class="cn">我本是高山而非溪流</span><span class="en">I was born to be a mountain, not a brook</span></div>
-          <div class="nphrase"><span class="cn">思考是我的抵抗</span><span class="en">I think, I resist</span></div>
-          <div class="nphrase"><span class="cn">宁鸣而死，不默而生</span><span class="en">I am the pride of the wilderness</span></div>
+          <div class="nphrase"><img class="nphrase-glyph" src="img/nushu-wind.png" alt="自由如风 written in Nüshu"><span class="cn">自由如风</span><span class="en">free as the wind</span></div>
+          <div class="nphrase"><img class="nphrase-glyph" src="img/nushu-mountain.png" alt="我本是高山而非溪流 written in Nüshu"><span class="cn">我本是高山而非溪流</span><span class="en">I was born to be a mountain, not a creek</span></div>
+          <div class="nphrase"><img class="nphrase-glyph" src="img/nushu-resist.png" alt="思考是我的抵抗 written in Nüshu"><span class="cn">思考是我的抵抗</span><span class="en">I think, I resist</span></div>
+          <div class="nphrase"><img class="nphrase-glyph" src="img/nushu-star.png" alt="我即旷野之星 written in Nüshu"><span class="cn">我即旷野之星</span><span class="en">I am the star of the wilderness</span></div>
         </div>
       </div>
 
-      <figure class="deckfig">
-        <img src="img/deck-music.jpg" alt="Signal's Universe pitch deck — the music">
-        <figcaption>From the pitch deck — how the score braids Kendrick, Nüshu and the talking drum into one orchestra.</figcaption>
-      </figure>
-
       <div class="manno">
-        <span class="src">a multicultural opera</span>
-        <p>The music is classic Western orchestration with a multicultural twist — the way <em>Bridgerton</em> remixes pop into strings, <em>Signal's Universe</em> remixes Kendrick Lamar, Chinese Nüshu and West African talking drum into the orchestra. Written with <b>Genie Deez.</b></p>
-        <figure class="deckfig">
-          <img src="img/deck-3.jpg" alt="Signal's Universe pitch deck — Creator's Statement, Genie Deez and Joyce Fu">
-          <figcaption>From the pitch deck — the creator's statement.</figcaption>
-        </figure>
+        <span class="src">a multicultural opera, written with Genie Deez</span>
+        <p>The music is classic Western orchestration with a multicultural twist — the way <em>Bridgerton</em> remixes pop into strings, <em>Signal's Universe</em> braids Kendrick Lamar, Chinese Nüshu and the West African talking drum into one score. My translation work runs underneath all of it — Chinese film into English, queer Chinese poetry its own canon was not built to keep — because carrying something across without flattening it is the whole art.</p>
         <a class="tape" href="https://next.frame.io/share/d3e8bcdf-7ec7-4783-8471-198406fc448e/view/45447715-6525-4f78-a39e-48b728b7f63a" target="_blank" rel="noopener"><img src="img/tape.png" alt="Click the tape — listen to the Signal audio teaser"></a>
       </div>
     </div>
@@ -622,6 +721,11 @@
     Eden Z. Jianpei · built for the .ART Award 2026 — “honouring how art is made.” Each work shown as an exploded view of its own construction. Draft in progress.
   </footer>
 </main>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Enlarged archival photograph">
+  <button class="lbclose" type="button" aria-label="Close">×</button>
+  <figure><img id="lbimg" src="" alt=""><figcaption id="lbcap"></figcaption></figure>
+</div>
 
 <script>
 (function(){
@@ -684,6 +788,56 @@
     links.forEach(function(a,i){ a.classList.toggle("on", i===best); });
   }
   window.addEventListener("scroll", onSpy, {passive:true}); onSpy();
+
+  // eagle-eye install plan — a numbered room lifts the prints pinned in it
+  (function(){
+    var stops = Array.prototype.slice.call(document.querySelectorAll(".plan .stop"));
+    var pins = Array.prototype.slice.call(document.querySelectorAll(".phpin"));
+    var krows = Array.prototype.slice.call(document.querySelectorAll(".phkrow"));
+    if(!pins.length) return;
+    var t;
+    function lift(sec){
+      stops.forEach(function(s){ s.classList.toggle("on", s.getAttribute("data-sec")===sec); });
+      krows.forEach(function(k){ k.classList.toggle("hl", k.getAttribute("data-sec")===sec); });
+      pins.forEach(function(p){ p.classList.remove("pulse"); });
+      var hit = pins.filter(function(p){ return p.getAttribute("data-sec")===sec; });
+      void (hit[0]&&hit[0].offsetWidth);
+      hit.forEach(function(p){ p.classList.add("pulse"); });
+      clearTimeout(t);
+      t = setTimeout(function(){
+        pins.forEach(function(p){ p.classList.remove("pulse"); });
+        stops.forEach(function(s){ s.classList.remove("on"); });
+        krows.forEach(function(k){ k.classList.remove("hl"); });
+      }, 1800);
+    }
+    stops.forEach(function(s){
+      s.addEventListener("click", function(){ lift(s.getAttribute("data-sec")); });
+      s.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); lift(s.getAttribute("data-sec")); } });
+    });
+    krows.forEach(function(k){ k.addEventListener("click", function(){ lift(k.getAttribute("data-sec")); }); });
+  })();
+
+  // lightbox for archival thumbnails
+  (function(){
+    var lb = document.getElementById("lightbox");
+    if(!lb) return;
+    var img = document.getElementById("lbimg"), cap = document.getElementById("lbcap");
+    function open(fig){
+      var full = fig.getAttribute("data-full"), c = fig.getAttribute("data-cap")||"", r = fig.getAttribute("data-ref")||"";
+      img.src = full; img.alt = c;
+      cap.innerHTML = c + (r ? '<span class="ref">'+r+'</span>' : '');
+      lb.classList.add("open"); lb.setAttribute("aria-hidden","false");
+    }
+    function close(){ lb.classList.remove("open"); lb.setAttribute("aria-hidden","true"); img.src=""; }
+    document.querySelectorAll(".phthumb, .phpin").forEach(function(fig){
+      fig.addEventListener("click", function(){ open(fig); });
+      fig.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); open(fig); } });
+    });
+    lb.addEventListener("click", close);
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") close(); });
+  })();
 })();
 </script>
+
+</body>
 </html>
