@@ -313,6 +313,16 @@
   .plan .stop:focus-visible .mk{stroke-width:2.4}
   footer{border-top:1px solid var(--line);padding-block:2rem 3rem;color:var(--muted);font-family:var(--mono);font-size:.72rem}
   @media (prefers-reduced-motion:reduce){.layer{transition:none}.chatroll{animation:none}.stage.spread .layer{animation:none}.nglyphs{animation:none}.mq{animation:none}}
+
+  /* Submission overview: artwork first, complete biography retained below. */
+  .opening-work{margin:1.8rem 0 0;max-width:48rem}
+  .opening-work img{display:block;width:100%;max-height:420px;object-fit:contain;background:var(--stage);border-radius:.6rem}
+  .opening-work figcaption{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-top:.6rem}
+  .intro-links{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;font-size:.9rem}
+  section[id]{scroll-margin-top:6rem}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+  @media(max-width:600px){section[id]{scroll-margin-top:10rem}.hero{padding-top:2rem}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500;700&family=Noto+Serif+SC:wght@600&display=swap">
 </head>
@@ -321,7 +331,8 @@
   <div class="wrap bar">
     <span class="brand">Eden Z. <span class="brandcn">(漳)</span> <span class="branddot">·</span> <span class="brandcn">鑑霈</span></span>
     <nav id="nav">
-      <a href="#about" class="on">about</a>
+      <a href="#intro" class="on">overview</a>
+      <a href="#about">biography</a>
       <a href="#fruit">"fruit"</a>
       <a href="#mermaid">ready mermaid one</a>
       <a href="#noodle">the body, nood</a>
@@ -333,29 +344,30 @@
 
 <main class="wrap">
 
-  <section id="about" class="hero">
+  <section id="intro" class="hero">
     <p class="eyebrow">.ART Award 2026 · the work behind the work</p>
     <h1>I build by <em>layering.</em></h1>
-    <p class="lede">Every piece here is pulled apart so you can see how it was made — the archive, the audio, the interface, the body, and the small version of me sitting inside the image. Hit <b>explode</b> on any work and the layers break out of the frame.</p>
-    <p class="bio">Eden Z. Jianpei is a Hong Kong–born multidisciplinary artist working across film, performance and translation. Her absurdist comedy explores god and sin in relation to technology by studying the physical and spiritual instability of the body — gods that won't answer, bodies that won't behave.</p>
-    <p class="bio">She assembles films from borrowed material — appropriated archive, double exposure, videogame interfaces — leaving the seams of construction visible, and dropping a tiny composited version of herself into the frame as a recurring signature.</p>
-    <p class="bio">Raised across diplomatic communities, she has lived in some seventy countries; the longest she stayed anywhere was three years in South Bend, Indiana. She holds an MA from Brown University (2026) and a BA from the University of Notre Dame. Her short documentary <em>After the Race</em> was nominated for a NATAS Chicago/Midwest College Student Production Award (2024); her films have screened in official competition at the Flickers' Rhode Island International Film Festival and across the experimental circuit.</p>
-    <p class="bio">Her translation work spans a queer literary anthology and the subtitle and dub translation for the North American distribution of <em>Wukong Warrior</em>, and her research on Jewish refugees in Shanghai during WWII became the exhibition <em>The Paper Haven</em>. Her films are produced under Ribcage Pictures, which also publishes <em>Forty Episodes</em>, her licensing atlas for Chinese drama. She is developing <em>Signal's Universe</em>, an animated series rooted in musicology, and performs stand-up at Flappers in Los Angeles and Rooster in the Bay Area.</p>
-    <p class="bio biolegal">Eden Z. Jianpei is the artist name of Joyce Fu.</p>
+    <p class="lede">I build films, performances, and translations by layering archival images, staged bodies, and borrowed interfaces. These five projects open up the source material, compositing choices, narrative structures, and research behind the work.</p>
     <div class="meta">
       <span><b>Hong Kong–born</b> · based New York / Los Angeles</span>
       <span><b>Media</b> moving image · installation · translation · collage</span>
-      <span><b>Try it</b> explode or map out any work below</span>
+      <span><b>Explore</b> artwork, process, and sources</span>
     </div>
+    <figure class="opening-work">
+      <a href="#fruit"><img src="img/fruit-5.jpg" alt="A still from fruit: Eden, doubled in red, dances in front of an erupting volcano" fetchpriority="high"></a>
+      <figcaption><em>"fruit"</em>, 2026 · Performance composited into borrowed footage. <a href="#fruit">Explore the work and process →</a></figcaption>
+    </figure>
+    <p class="intro-links"><a href="#fruit">Explore the five works ↓</a><a href="#about">Read the full biography ↓</a></p>
+
   </section>
 
   <!-- FRUIT -->
   <section id="fruit" class="work">
     <div class="whead"><span class="wnum">01</span><h2>"fruit"</h2><span class="wtag">found-footage film · 2026</span></div>
-    <p class="wnarr"><em>"fruit"</em> is an archival film about existence as a blip in the matrix, nature as insurmountable, and the nihilist certainty that everything is as it should be. I green-screened myself — small, vaping — over a torrent of borrowed footage: the 1927 silent exploitation film <em>Is Your Daughter Safe?</em>, the instructional documentary "The Growth of Plants," a nuclear mushroom cloud, Barney, a cosmic tardigrade — all under Werner Herzog's monologue from <em>Burden of Dreams</em> (1982) on the misery of the jungle. Nothing is original footage; the compositing <em>is</em> the argument — the human as a tiny, unbothered blip in an overwhelming, amoral nature.</p>
+    <p class="wnarr"><em>"fruit"</em> is an archival film about existence as a blip in the matrix, nature as insurmountable, and the nihilist certainty that everything is as it should be. I green-screened myself — small, vaping — over a torrent of borrowed footage: the 1927 silent exploitation film <em>Is Your Daughter Safe?</em>, the instructional documentary "The Growth of Plants," a nuclear mushroom cloud, Barney, a cosmic tardigrade — all under Werner Herzog's monologue from <em>Burden of Dreams</em> (1982) on the misery of the jungle. I composite my own filmed performance into borrowed footage; the compositing <em>is</em> the argument — the human as a tiny, unbothered blip in an overwhelming, amoral nature.</p>
     <div class="breakdown">
       <div class="marquee"><span class="mq">we are challenging nature itself &mdash; and it hits back &middot; it is full of obscenity &middot; fornication and asphyxiation and choking and fighting for survival &middot; the birds do not sing, they screech in pain &middot; there is no harmony in the universe &middot; I love it &mdash; against my better judgment &middot; we are challenging nature itself &mdash; and it hits back &middot; it is full of obscenity &middot; fornication and asphyxiation and choking and fighting for survival &middot; the birds do not sing, they screech in pain &middot; there is no harmony in the universe &middot; I love it &mdash; against my better judgment &middot; </span></div>
-      <p class="mqcap">Werner Herzog's <em>Burden of Dreams</em> (1982) monologue over borrowed footage &mdash; shot by shot, nothing originally mine</p>
+      <p class="mqcap">Werner Herzog's <em>Burden of Dreams</em> (1982) monologue over borrowed footage &mdash; borrowed images, my performance, and the composite frame</p>
       <div class="shot">
         <img src="img/fruit-1.jpg" alt="black-and-white time-lapse of plant stems, a tiny red figure composited below">
         <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9312; <em>The Growth of Plants</em> (1927)</span><p>An instructional documentary &mdash; stems climbing, seeds splitting open in time-lapse. I am composited in, small and in red, standing under the growth.</p></div></div>
@@ -377,7 +389,7 @@
         <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9316; the volcano &mdash; the power of nature</span><p>A real eruption. I dance over the disaster, doubled, unbothered &mdash; the nihilist shrug the whole film rides on: everything is as it should be.</p></div></div>
       </div>
       <div class="legend">
-        <span><b>footage</b> 100% borrowed</span>
+        <span><b>source imagery</b> borrowed footage</span>
         <span><b>self</b> composited small &middot; vaping</span>
         <span><b>spine</b> Herzog, <em>Burden of Dreams</em></span>
         <span><b>argument</b> the human = a blip</span>
@@ -504,10 +516,10 @@
 
   <!-- BODY NOOD -->
   <section id="noodle" class="work">
-    <div class="whead"><span class="wnum">03</span><h2>The Body, Nood</h2><span class="wtag">wordless image collage · 2026</span></div>
-    <p class="wnarr"><em>The Body, Nood</em> is a narrative short about my alter ego metamorphosing into a noodle. Rather than treating the body as a container for the self, it imagines the body as a <em>continuation of the world</em> — collapsing categories usually kept apart: body and landscape, pleasure and disgust, self and environment. There is no script; it's a wordless collage that intercuts my own footage with found war and cinema clips, archival immigration film, and food macros until the woman and the noodle are the same material.</p>
+    <div class="whead"><span class="wnum">03</span><h2>The Body, Nood</h2><span class="wtag">moving-image collage · 2026</span></div>
+    <p class="wnarr"><em>The Body, Nood</em> is a narrative short about my alter ego metamorphosing into a noodle. Rather than treating the body as a container for the self, it imagines the body as a <em>continuation of the world</em> — collapsing categories usually kept apart: body and landscape, pleasure and disgust, self and environment. The collage intercuts my own footage with found war and cinema clips, archival immigration film, and food macros until the woman and the noodle are the same material.</p>
     <div class="breakdown">
-      <p class="mqcap">what it's cut from — shot by shot, no words</p>
+      <p class="mqcap">what it's cut from — images, cuts, and dialogue</p>
       <div class="shot">
         <img src="img/nood-field.jpg" alt="a lone figure in a snowy winter wheat field">
         <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9312; the body in the landscape</span><p>A lone figure in a wide winter wheat field, noodles in hand — the body set into the world before anything is done to it.</p></div></div>
@@ -539,7 +551,7 @@
         <span><b>collapse</b> self / environment</span>
         <span><b>the gaze</b> looking = targeting</span>
         <span><b>material</b> woman = noodle</span>
-        <span><b>sound</b> wordless</span>
+        <span><b>form</b> image-led collage</span>
       </div>
     </div>
   </section>
@@ -643,7 +655,7 @@
 
   <!-- SIGNAL'S UNIVERSE -->
   <section id="signal" class="work">
-    <div class="whead"><span class="wnum">05</span><h2>Signal's Universe</h2><span class="wtag">animated opera · musicology · with Genie Deez</span></div>
+    <div class="whead"><span class="wnum">05</span><h2>Signal's Universe</h2><span class="wtag">animated opera in development · with Genie Deez</span></div>
     <p class="wnarr"><em>Signal's Universe: The First Song</em> is an animated space opera where <b>sound is power</b> — and, underneath that, an art project about <b>cultural preservation by adaptation</b>. Signal, a half-Chinese, half-Black music prodigy at an elite space academy, risks everything to hear her missing father's last transmission. Every world in it is built from a real, endangered language and music — carried across into something new, not sealed behind glass.</p>
 
     <figure class="deckfig galaxy">
@@ -655,7 +667,7 @@
       <div class="mnode why">
         <span class="mstep">why I'm making it — the artist statement</span>
         <h4>What does cultural preservation mean when the thing is already "preserved"?</h4>
-        <p>Nüshu already sits in archives and museum cases; technically, it is preserved. But a script kept behind glass is a dead one — and Nüshu was never read silently, it was <em>sung</em>. With the <b>Steinhaus/Zisson Graduate Research Grant at Brown's Pembroke Center</b>, I spent a project — <em>Reviving Nüshu: Women's Script as Modern Song</em> — translating its glyphs, melodies and meanings into an original song, co-written and recorded with <b>Genie</b>, and premiered it at a listening event at Brown. The question underneath it — <em>how can art translate linguistic disappearance into sonic presence?</em> — is the one <em>Signal's Universe</em> is built on. A dying language survives only if it can still be sung into something new. Moving a thing across — one tongue, one body, one era to the next — is not only my subject here; it is the operation. Translation as an act of care.</p>
+        <p>I approach preservation through performance: what changes when archival writing becomes a newly composed song? With the <b>Steinhaus/Zisson Graduate Research Grant at Brown's Pembroke Center</b>, I developed the project <em>Reviving Nüshu: Women's Script as Modern Song</em>, translating its glyphs, melodies and meanings into an original song, co-written and recorded with <b>Genie</b>, and premiered it at a listening event at Brown. The question underneath it — <em>how can art translate linguistic disappearance into sonic presence?</em> — is the one <em>Signal's Universe</em> is built on. Here, adaptation becomes a way to bring archival material into a new performance. Moving a thing across — one tongue, one body, one era to the next — is not only my subject here; it is the operation. Translation as an act of care.</p>
       </div>
 
       <figure class="deckfig">
@@ -716,8 +728,17 @@
     </div>
   </section>
 
+  <section id="about" class="work">
+    <div class="whead"><h2>Artist biography</h2></div>
+    <p class="bio">Eden Z. Jianpei is a Hong Kong–born multidisciplinary artist working across film, performance and translation. Her absurdist comedy explores god and sin in relation to technology by studying the physical and spiritual instability of the body — gods that won't answer, bodies that won't behave.</p>
+    <p class="bio">She assembles films from borrowed material — appropriated archive, double exposure, videogame interfaces — leaving the seams of construction visible, and dropping a tiny composited version of herself into the frame as a recurring signature.</p>
+    <p class="bio">Raised across diplomatic communities, she has lived in some seventy countries; the longest she stayed anywhere was three years in South Bend, Indiana. She holds an MA from Brown University (2026) and a BA from the University of Notre Dame. Her short documentary <em>After the Race</em> was nominated for a NATAS Chicago/Midwest College Student Production Award (2024); her films have screened in official competition at the Flickers' Rhode Island International Film Festival and across the experimental circuit.</p>
+    <p class="bio">Her translation work spans a queer literary anthology and the subtitle and dub translation for the North American distribution of <em>Wukong Warrior</em>, and her research on Jewish refugees in Shanghai during WWII became the exhibition <em>The Paper Haven</em>. Her films are produced under Ribcage Pictures, which also publishes <em>Forty Episodes</em>, her licensing atlas for Chinese drama. She is developing <em>Signal's Universe</em>, an animated series rooted in musicology, and performs stand-up at Flappers in Los Angeles and Rooster in the Bay Area.</p>
+    <p class="bio biolegal">Eden Z. Jianpei is the artist name of Joyce Fu.</p>
+  </section>
+
   <footer>
-    Eden Z. Jianpei · built for the .ART Award 2026 — “honouring how art is made.” Each work shown as an exploded view of its own construction. Draft in progress.
+    Eden Z. Jianpei · built for the .ART Award 2026 — “honouring how art is made.” Selected works, process documentation, and artist biography.
   </footer>
 </main>
 
