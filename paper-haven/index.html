@@ -1,0 +1,405 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>The Paper Haven</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column; objects in a plate grid that drops to one column on a phone.
+   Palette taken from the pass grades Bloch cut into his own woodcut — COLOUR BLUE, COLOUR PINK. */
+:root{
+  --paper:#eef0f1;
+  --card:#f7f8f8;
+  --ink:#171b20;
+  --muted:#5c656e;
+  --rule:#cdd3d7;
+  --pass-blue:#2d4f7c;
+  --pass-pink:#9e5a63;
+  --display:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --body:"Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#13171b; --card:#1b2026; --ink:#e6e9ea; --muted:#99a3ab;
+    --rule:#2d353d; --pass-blue:#8fb2dd; --pass-pink:#d79aa2;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#13171b; --card:#1b2026; --ink:#e6e9ea; --muted:#99a3ab;
+  --rule:#2d353d; --pass-blue:#8fb2dd; --pass-pink:#d79aa2;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:16.5px; line-height:1.62;
+  margin:0; padding-inline:20px; padding-block:0;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:720px; margin:0 auto; padding-block:clamp(40px,7vw,78px)}
+p{margin:0 0 1em; max-width:none}
+a{color:var(--pass-blue)}
+
+/* masthead */
+.mast{border-bottom:2px solid var(--ink); padding-bottom:20px}
+h1{
+  font-family:var(--display); font-weight:500; font-size:clamp(2.6rem,8.5vw,4.4rem);
+  line-height:1.02; letter-spacing:-.018em; margin:0; text-wrap:balance;
+}
+.sub{font-family:var(--display); font-style:italic; font-size:clamp(1.06rem,3vw,1.34rem); color:var(--muted); margin:.5rem 0 0}
+.byline{
+  font-family:var(--mono); font-size:.73rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); margin:1.4rem 0 0; display:flex; flex-wrap:wrap; gap:.4rem 1.4rem;
+}
+
+/* standfirst */
+.stand, p.lede{font-family:var(--display); font-size:clamp(1.08rem,2.6vw,1.3rem); line-height:1.55}
+.stand{margin:30px 0 0}
+.stand p{max-width:none}
+
+h2{
+  font-family:var(--mono); font-size:.76rem; font-weight:500;
+  letter-spacing:.17em; text-transform:uppercase; color:var(--pass-blue);
+  margin:58px 0 14px; padding-bottom:7px; border-bottom:1px solid var(--rule);
+}
+
+/* the argument */
+.thesis{
+  font-family:var(--display); font-size:clamp(1.3rem,4vw,1.72rem); line-height:1.3;
+  letter-spacing:-.01em; margin:22px 0 30px; max-width:none;
+  border-left:3px solid var(--pass-pink); padding-left:18px;
+}
+
+/* sections */
+.sections{list-style:none; margin:0; padding:0; display:grid; gap:0}
+.sections li{
+  display:flex; gap:16px; align-items:baseline;
+  padding:11px 0; border-bottom:1px solid var(--rule);
+}
+.sections .n{font-family:var(--mono); font-size:.72rem; color:var(--muted); min-width:2.2em; font-variant-numeric:tabular-nums}
+.sections .t{font-family:var(--display); font-size:1.1rem}
+.sections .d{color:var(--muted); font-size:.92rem; margin-left:auto; text-align:right; min-width:0}
+
+/* plates */
+.plates{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:0 26px; margin-top:24px; align-items:start;
+  grid-auto-rows:8px;            /* fine row unit; JS spans each figure over as many as it needs */
+  grid-auto-flow:row dense;      /* backfill the holes a sparse flow would leave */
+  /* break out of the 720px reading column so plates run wider than the prose */
+  width:min(100vw - 40px, 1040px); position:relative; left:50%; transform:translateX(-50%);
+}
+figure{margin:0 0 30px; min-width:0}
+figure img{
+  display:block; width:100%; height:auto; max-width:100%;
+  background:var(--card); border:1px solid var(--rule);
+}
+figcaption{margin-top:9px; font-size:.86rem; line-height:1.45; color:var(--ink)}
+figcaption .ref{display:block; font-family:var(--mono); font-size:.68rem; letter-spacing:.07em; color:var(--muted); margin-top:5px}
+figure.wide{grid-column:1 / -1}
+
+/* figures set into the prose rather than the plate grid */
+figure.side{float:right; width:40%; margin:6px 0 20px 28px; clear:both}
+figure.side img{width:auto; max-width:100%; max-height:440px; display:block; margin:0 auto}
+h2{clear:both}
+@media (max-width:640px){ figure.side{float:none; width:100%; margin:18px 0 22px} figure.side img{max-height:60vh} }
+
+/* a small centered portrait, not a floated plate */
+figure.portrait{float:none; width:100%; margin:28px 0 26px; clear:both}
+figure.portrait img{width:min(200px,42%); display:block; margin:0 auto}
+figure.portrait figcaption{max-width:46ch; margin:10px auto 0; text-align:center}
+@media (max-width:520px){ .plates{grid-template-columns:1fr} }
+
+/* facts */
+.facts{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:2px; margin-top:20px}
+.facts div{background:var(--card); padding:14px 16px; min-width:0}
+.facts dt{font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.facts dd{margin:5px 0 0; font-size:.95rem; line-height:1.45}
+
+/* voices */
+.voices{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px 30px; margin:22px 0 16px}
+blockquote{margin:0; min-width:0; border-top:1px solid var(--rule); padding-top:13px}
+blockquote p{
+  font-family:var(--display); font-size:1.08rem; line-height:1.42; margin:0;
+  text-wrap:pretty; max-width:none;
+}
+blockquote p::before{content:"\201C"}
+blockquote p::after{content:"\201D"}
+blockquote cite{
+  display:block; margin-top:9px; font-style:normal;
+  font-family:var(--mono); font-size:.69rem; letter-spacing:.06em; color:var(--muted); line-height:1.5;
+}
+
+.note{font-size:.9rem; color:var(--muted); max-width:none}
+.accounts{margin:16px 0 0; padding-left:1.3em}
+.accounts li{margin-bottom:.7em}
+.note.lead{max-width:none}
+.contact{font-family:var(--mono); font-size:.92rem; margin-top:8px; user-select:all}
+footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--rule); font-size:.82rem; color:var(--muted)}
+</style>
+
+<script>
+/* CSS grid aligns every cell in a row to the tallest one, which left big holes under
+   short captions. Span each figure over as many 8px rows as it actually needs. */
+(function(){
+  var ROW = 8, MB = 30;               // grid-auto-rows, figure margin-bottom
+  function layout(){
+    var g = document.querySelector('.plates');
+    if(!g) return;
+    var one = getComputedStyle(g).gridTemplateColumns.split(' ').length < 2;
+    [].forEach.call(g.children, function(f){
+      f.style.gridRowEnd = 'auto';
+      if(one){ return; }
+      var h = f.getBoundingClientRect().height;
+      f.style.gridRowEnd = 'span ' + Math.ceil((h + MB) / ROW);
+    });
+  }
+  window.addEventListener('resize', layout);
+  window.addEventListener('load', layout);
+  document.addEventListener('DOMContentLoaded', function(){
+    layout();
+    [].forEach.call(document.images, function(im){
+      if(!im.complete) im.addEventListener('load', layout);
+    });
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  });
+})();
+</script>
+
+<div class="wrap">
+
+  <header class="mast">
+    <h1>The Paper Haven</h1>
+    <p class="sub">Jewish Refugees in Shanghai, 1938–1950</p>
+    <p class="byline"><span>Curated by Joyce Fu</span><span>Five sections and a coda</span><span>Scales to the wall available</span></p>
+  </header>
+
+  <div class="stand">
+    <p>Until August 1939, Shanghai was the only port in the world where refugees could land without a visa. Power in the city was divided among the Japanese occupation authorities, the British-dominated International Settlement, the French Concession and a barely autonomous Chinese municipality. No single authority controlled immigration.</p>
+  </div>
+
+    <figure class="side">
+      <img src="img/bund.jpg" alt="Elevated view along the Bund waterfront: bank buildings on the left, motor cars on the road, massed sampans and barges on the river.">
+      <figcaption>The port of Shanghai along the Bund, picture postcard, c. 1930–37 — the foreign banks and trading houses on one side of the road, the river traffic on the other. This is the Shanghai the refugees sailed into: a city where being European meant standing outside Chinese law.
+      <span class="ref">United States Holocaust Memorial Museum · 37371</span></figcaption>
+    </figure>
+
+  <p class="lede">In March 1938 Germany annexed Austria. To leave the Reich, Jews needed to provide proof that another country would take them in. In July 1938 thirty-two countries met at Évian, France to discuss what they called "the refugee problem"; only the Dominican Republic offered to accept more. After the November pogrom, twenty-six thousand Jewish men were held in Dachau, Buchenwald and Sachsenhausen, and some were released only when their families could produce a visa or a ticket. The Chinese consul in Vienna, <strong>Ho Feng-Shan</strong>, stamped thousands of visas during this time — paper for a city that required none to enter.</p>
+
+    <figure class="portrait">
+      <img src="img/ho.jpg" alt="Studio portrait of a man in a double-breasted suit, holding a cigarette.">
+      <figcaption>Ho Feng-Shan, Consul General of China in Vienna — a demerit was entered in his personnel file in 1939. Righteous Among the Nations, 2000.
+      <span class="ref">Yad Vashem Photo Archive, Jerusalem. 14483410</span></figcaption>
+    </figure>
+
+  <p class="lede">By 1941, about twenty thousand European Jews had arrived in Shanghai. Many were housed in Hongkou, a district devastated by bombing in 1937, alongside Chinese families who had also lost their homes. The exhibition traces these lives through seventy-six archival documents and photographs: passports, decrees, entry permits, tickets, ration cards, census returns, newspapers, the Japanese proclamation of February 1943.</p>
+
+  <p class="lede">This is a lesser-known passage of the Second World War: a door out of Europe that no government opened. Where policy failed, individual decisions shaped lives.</p>
+
+  <h2>The people</h2>
+    <figure class="side">
+      <img src="img/chen.jpg" alt="A man in a long Chinese gown standing against a brick wall, hands at his sides, facing the camera.">
+      <figcaption>Chen, a Chinese translator employed by the Shanghai city government, 1939–40. He wrote Chinese civil marriage contracts for many Jewish refugees. He was an acquaintance of Walter Jacobsberg, and this photograph survives in the Jacobsberg family's papers.
+      <span class="ref">United States Holocaust Memorial Museum · 25772 · Jacobsberg papers</span></figcaption>
+    </figure>
+  <ul class="accounts">
+    <li><strong>Eric Goldstaub</strong> — after months of going from one consulate to the next, in July 1938 the Chinese consulate in Vienna gave him twenty visas, for his own relatives and for Harry Fiedler's parents. He photographed the streets of Shanghai for the next decade; four of those photographs are below.</li>
+    <li><strong>Lilith-Sylvia Doron</strong> met Ho Feng-Shan by chance in the street in Vienna in the days of the Anschluss, March 1938. Ho walked her home and kept coming back: as long as a diplomat sat in the room, he reasoned, the Nazis wouldn't dare to enter. Doron's brother Karl was taken to Dachau and got out on a Chinese consulate visa.</li>
+    <li><strong>Gerda Gottfried Kraus</strong> — after Kristallnacht her husband queued outside the Chinese consulate in Vienna. A car approached the gates and he pushed his application through the window as it passed. A telephone call came. The visas soon followed.</li>
+    <li><strong>Israel Singer's parents</strong> never went to Shanghai. They used their Chinese visas to exit the Reich, and ended up in Cuba.</li>
+    <li><strong>Jakob Rosenfeld</strong>, released from Buchenwald, escaped Austria on a Shanghai visa. He became a field doctor with the New Fourth and Eighth Route Armies, the Communist forces of the Chinese resistance against the Japanese occupation.</li>
+    <li><strong>David Ludwig Bloch</strong>, barred from the Munich Academy of Applied Arts and held four weeks in Dachau, reached Shanghai in April 1940. He started exhibiting his work within a year. Deaf from the age of one, he married Lilly Cheng Disiu (1916–1987), a deaf Chinese woman. They emigrated to the United States in March 1949.</li>
+    <li><strong>Chen</strong>, a translator for the city government, drew up Chinese civil marriage contracts for refugees.</li>
+    <li>Alongside these are quieter encounters: a neighbor who took in a family; a man who rented a rickshaw to carry a refugee child to school and home again.</li>
+  </ul>
+  <h2>The argument</h2>
+  <p>In Germany, Jews were excluded from national belonging. In Shanghai, they were read as Europeans — a classification that could place them above the Chinese among whom they lived.</p>
+
+  <p>On 29 September 1939 the Japanese-controlled Chinese-language <i>Xin Shenbao</i> ran an antisemitic conspiracy piece, "China and the Jewish Question"; on 16 February 1943 the <i>Shanghai Times</i> ran "Shanghai, Hunting Ground of Thriving Jewish Racketeers," by Tang Leang-li, an official of the puppet Wang Jingwei regime. However, Irene Eber — a Hebrew University sinologist whose documentary volume is the source for both pieces — records that the campaign failed in producing expressions of antisemitism among a Chinese population who "did not distinguish between one foreigner and another."</p>
+
+    <figure class="side">
+      <img src="img/committee.jpg" alt="Group portrait: four European men seated in chairs in Western suits, eight Chinese men standing behind them in Chinese jackets.">
+      <figcaption>Staff of the International Committee for European Immigrants in China, Shanghai, February 1940 — the Shanghai relief committee founded in 1938 and underwritten by Victor Sassoon, European-run with Chinese employees. Paul Komor, the Hungarian honorary consul who co-founded it and ran it, is seated second from the right. Eric Goldstaub, seated first on the left, was eighteen, fourteen months off the boat, and an employee in Komor's firm, while the eight Chinese staff stand behind. The museum does not record the names of any of the Chinese staff.
+      <span class="ref">United States Holocaust Memorial Museum · 21615</span></figcaption>
+    </figure>
+
+  <p class="thesis">Displacement doesn't remove refugees from hierarchy. It relocates them.</p>
+  <p>This exhibition brings institutional documents into conversation with individuals' often-conflicting accounts of their own lives. For a hundred years, being European in Shanghai had meant standing outside Chinese law. On 11 January 1943 the United States and Britain relinquished extraterritoriality and their administration of the International Settlement. Five weeks later the Japanese administration ordered the refugees into a designated area of Hongkou, where roughly a hundred thousand Chinese already lived.</p>
+  <p>On 15 August 1945 the Japanese surrendered. The refugees were largely still stateless and still destitute, but relief now came from an army that had won, and there was somewhere to go. The <i>Marine Falcon</i> sailed 17 January 1947 with 952 refugees to Naples by way of the Suez Canal, on an American President Lines ship chartered by the United Nations Relief and Rehabilitation Administration. Their neighbors in Hongkou stayed.</p>
+
+  <h2>Three exhibitions</h2>
+  <p>In 1942 Bloch and others founded Arta, the Association of Jewish Artists and Friends of Jewish Art, with 64 members. It exhibited at Whiteaway, Laidlaw &amp; Co. on Nanking Road and, in March 1944, inside the Designated Area. <i>Our Life</i> reported that Ghoya, of the Stateless Refugees Affairs Bureau, delivered the opening speech and "expressed his appreciation of the refugee artists' creative abilities." He also called himself "King of the Jews" and decided, month by month, which of them could leave the district to work — and sometimes withdrew that permission without cause.</p>
+    <figure class="side">
+      <img src="img/catalogue.jpg" alt="Typed catalogue page with numbered entries.">
+      <figcaption>Bloch's own copy of the catalogue of <i>Jewish Life in Shanghai</i>, YIVO, New York, 1948–49, open at p. 18. It printed his work under the wrong name, V. E. Bloch; he wrote his own name across the cover and circled the entry. Melchior is on the same page, no. 169.
+      <span class="ref">Courtesy of the Leo Baeck Institute</span></figcaption>
+    </figure>
+
+  <p>In December 1946 the YIVO Shanghai Branch mounted an Exhibition of Jewish Artists at the Shanghai Jewish School. Its catalogue foreword sets out YIVO's own task — the "collection of all material and proofs referring to the Jewish life in the past and now." In September 1948 YIVO — the Yiddish Scientific Institute — showed the work in New York City as <i>Jewish Life in Shanghai</i>. It was opened by its co-founder Max Weinreich, with <i>Our Life</i>'s editor Menakhem Flaxer speaking.</p>
+
+  <p>The refugees were collecting evidence about themselves, inside the dispersal, while it was still happening. Eighty years later, these materials also allow us to examine the complicated social position of the people who assembled them.</p>
+
+  <h2>In their own words</h2>
+  <div class="voices">
+    <blockquote>
+      <p>These Chinese vendors or salesmen, in their respective field, be it vegetable or fish or meat, it, unbelievably, would learn not only to speak German, but they would learn to speak Yiddish, with an Austrian dialect …</p>
+      <cite>Susie Friedlander</cite>
+    </blockquote>
+    <blockquote>
+      <p>And I learned Chinese on the job. All the mechanics were Chinese …</p>
+      <cite>Paul Reisman, apprenticed among Chinese mechanics in Shanghai</cite>
+    </blockquote>
+    <blockquote>
+      <p>And even the Chinese, when they understood that these were penniless refugees, they started to help … There were lots of rich Chinese people also in Shanghai who helped.</p>
+      <cite>Eric Max Bergtraun, who reached Shanghai from Vienna after Kristallnacht, aged thirteen</cite>
+    </blockquote>
+    <blockquote>
+      <p>The fact that you have Chinese servants … they're just part of the furniture. You don't consider them as people …</p>
+      <cite>Mia Blocker, who reached Shanghai from Vienna in 1940</cite>
+    </blockquote>
+    <blockquote>
+      <p>We had kosher Chinese food every Sunday for years and years.</p>
+      <cite>Sasson Jacoby, of a Baghdadi family long settled in Shanghai — not a refugee</cite>
+    </blockquote>
+    <blockquote>
+      <p>As we got older, the play tended to be more among ourselves.</p>
+      <cite>Ralph Hirsch, who was nine when he arrived from Berlin</cite>
+    </blockquote>
+  </div>
+  <p class="note lead">Oral histories, Shanghai Jewish Community Oral History Collection, Edmund S. Muskie Archives, Bates College.</p>
+
+  <h2>Sections</h2>
+  <ul class="sections">
+    <li><span class="n">I</span><span class="t">Vienna</span><span class="d">Leaving the Reich, and the visa that made it possible</span></li>
+    <li><span class="n">II</span><span class="t">The Passage</span><span class="d">Trieste to Shanghai, twenty-five days</span></li>
+    <li><span class="n">III</span><span class="t">Little Vienna</span><span class="d">Hongkou, building a life</span></li>
+    <li><span class="n">IV</span><span class="t">The Paper Dies</span><span class="d">February 1943, the Designated Area</span></li>
+    <li><span class="n">V</span><span class="t">Stateless</span><span class="d">Japan's surrender, and the decisions that followed</span></li>
+    <li><span class="n">—</span><span class="t">Zai Jian 再見</span><span class="d">Leaving, and the neighbors who stayed</span></li>
+  </ul>
+
+  <h2>Selected objects</h2>
+  <p class="note lead">In rough chronological order.</p>
+  <div class="plates">
+
+    <figure>
+      <img src="img/regulations.jpg" alt="Enamelled sign headed Public and Reserve Gardens Regulations, listing numbered rules.">
+      <figcaption>Public and Reserve Gardens Regulations sign, Shanghai, 1917–1928. Rule 1 reads "The Gardens are reserved for the Foreign Community"; Rule 4, three lines below, reads "Dogs and bicycles are not admitted." The exclusion was real: the park was closed to Chinese from 1890 to 1928. In popular culture, through Bruce Lee's <i>Fist of Fury</i> (1972), the humiliation of the time period came to be remembered as one phrase — "No dogs and Chinese allowed."
+      <span class="ref">Historical Photographs of China, University of Bristol</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/moser.jpg" alt="Open passport: a young woman's photograph with an eagle-and-swastika stamp across it, her signature, and a printed description page.">
+      <figcaption>Passport of Hermine Moser, Police President of Vienna, 17 February 1939, open at the photograph and description pages. The Reich eagle is stamped over the edge of her photograph and again beside the date. She was seventeen: born 22 January 1922, resident in Vienna, eyes blue, hair dark blond.
+      <span class="ref">Yad Vashem Photo Archive, Jerusalem. 14483411</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/invitation.jpg" alt="Folded card printed in Chinese characters on one panel and English on the other, announcing an exhibition.">
+      <figcaption>Invitation to D. L. Bloch's exhibition of watercolours, Shanghai, 1941 — printed in Chinese and English on one card: "D. L. BLOCH would request the honour of your presence at his EXHIBITION of water colour paintings, held at Modern Homes, Bubbling Well Road." Bubbling Well Road was one of the extra-settlement roads — laid out by the foreign municipal authorities beyond the International Settlement’s own boundary.
+      <span class="ref">Courtesy of the Leo Baeck Institute</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/palette.jpg" alt="Invitation card die-cut in the shape of a painter's palette, printed in black, green and cream.">
+      <figcaption>Invitation to a Bloch exhibition at the Shanghai Art Gallery, die-cut as a painter's palette and printed in English, Chinese and Japanese.
+      <span class="ref">Courtesy of the Leo Baeck Institute · AR 7199, oversize, not digitized</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/proclamation.jpg" alt="Newspaper proclamation headed Residences, Businesses of City's Stateless Refugees Limited to Defined Sector.">
+      <figcaption>Proclamation of 18 February 1943, as printed in the <i>North-China Daily News</i> — issued by the Japanese army and navy authorities, citing military necessity, and applying to every stateless refugee who had reached Shanghai since 1937. The order does not say Jewish. It says stateless — which the German and Austrian refugees had been made fifteen months earlier by the Eleventh Decree to the Reich Citizenship Law, 25 November 1941, which stripped German nationality from every Jew living outside the Reich.
+      <span class="ref">United States Holocaust Memorial Museum</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/rickshaw.jpg" alt="Watercolour of a man in Western dress riding in a rickshaw pulled at a run by a barefoot Chinese man.">
+      <figcaption><i>Self-portrait in a rickshaw</i>, watercolour, 1943 — Bloch paints himself as the passenger, holding a fan, pulled at a run by a barefoot Chinese man. The catalogue records the donor's note that the fan was how Europeans in Shanghai managed the heat.
+      <span class="ref">Courtesy of the Leo Baeck Institute</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/woodcut.jpg" alt="Dense black-and-white woodcut built from fragments of official notices and stamps, with two figures standing under a signpost with luggage.">
+      <figcaption><i>Shanghai Ghetto</i>, woodcut, signed and dated 1943–45. Legible in the block: the Stateless Refugees Affairs Bureau and its Director General; GHOYA and KUBOTA; DESIGNATED AREA; FOREIGN PAO CHIA; SEGREGATED; <span style="color:var(--pass-blue)">COLOUR BLUE</span> and <span style="color:var(--pass-pink)">COLOUR PINK</span> for the pass grades. Two figures stand under the signpost with their luggage.
+      <span class="ref">Courtesy of the Leo Baeck Institute</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/street.jpg" alt="Five people, adults and two children, standing against a brick wall on a sunlit street.">
+      <figcaption>The Goldstaub family with Harry Fiedler on a Shanghai street, 1943–45 — Eric and Adolf Goldstaub, Harry Fiedler, Camilla Goldstaub. Harry was born in Shanghai in July 1940, a year and a half after his parents arrived on Eric&rsquo;s visas.
+      <span class="ref">United States Holocaust Memorial Museum · 26354</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/motorcycle.jpg" alt="Two men in jackets on a motorcycle in a Shanghai street, Chinese shopfronts and a rickshaw behind them.">
+      <figcaption>Eric Goldstaub on a motorcycle with a friend, Shanghai, 1945 — outside a Chinese shopfront on an ordinary trading street, a rickshaw waiting at the kerb behind him.
+      <span class="ref">United States Holocaust Memorial Museum · 26336</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/children.jpg" alt="A Chinese man seated outside a shop doorway with two small children standing beside him.">
+      <figcaption>Two Jewish refugee children with a Chinese kiosk-keeper, Shanghai, 1945 — Harry Fiedler at centre. The man runs the glazed case behind them. Above his head a painted board advertises a jeweller, and a neon restaurant sign runs down the pillar at left: a Hongkou street where Chinese and refugee businesses stood side by side.
+      <span class="ref">United States Holocaust Memorial Museum · 45628</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/chronicle.jpg" alt="Front page of a German-language newspaper with a fraktur masthead reading Shanghai Jewish Chronicle.">
+      <figcaption><i>Shanghai Jewish Chronicle</i>, 11 August 1945: "Japan zur Annahme der Potsdamer Bedingungen bereit" — Japan prepared to accept the Potsdam terms. This is how the news traveled through the Designated Area: in German, in a refugee paper, four days before Japan announced its surrender.
+      <span class="ref">Courtesy of the Leo Baeck Institute · AR 7199, oversize, not digitized</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/letter.jpg" alt="Typed letter on a small sheet, signed by hand.">
+      <figcaption>Melchior's letter to Ghoya, typed on the back of his own pass and signed, September 1945. Addressed "To Mr. Ghoya, late Japanese official of the Stateless Refugees' Affairs Bureau, Shanghai-Hongkew, now ????????". It reads: "you called yourself 'King of the Jews' assuming your position unshakable. Yet, we knew better."
+      <span class="ref">Courtesy of the Leo Baeck Institute</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/pamphlet.jpg" alt="Printed pamphlet cover crowded with pass stamps and dates, titled Good-bye Mr. Ghoya.">
+      <figcaption><i>Good-bye Mr. Ghoya</i>, pamphlet, 1945 — seven cartoons by Friedrich Melchior, printed in the weeks after the surrender. The cover is his own pass: no. 5100, "Melchior Friedrich, Commercial Artist," age 48, stamped month by month — 20 April, 22 May, 21 June, 20 July, 22 August 1945 — with the title brushed across it in green. The first thing the district did with its freedom was publish a caricature of the official who spent two years making its inhabitants bow for a day pass.
+      <span class="ref">United States Holocaust Memorial Museum · 1998.49.1</span></figcaption>
+    </figure>
+
+    <figure class="wide">
+      <img src="img/ghoya.jpg" alt="Three hand-coloured caricature drawings in a row showing a small official in various scenes.">
+      <figcaption>Fritz Melchior, three hand-coloured caricatures of Ghoya, 1945 — the originals behind the <i>Good-bye Mr. Ghoya</i> pamphlet. "Ghoya I. — The former King of Hongkew." · "No Can" — "You are grave-digger. Very honest profession. I give you blue pass. All districts. But first you bring me list of customers." · "The Dictator plays" — "If you don't beat proper rythm, Professor, I'll kill you." Blue and pink were the two pass grades, and both appear in Bloch's woodcut.
+      <span class="ref">Leo Baeck Institute, AR 2509 · not digitized</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/chanukah.jpg" alt="Printed card, both sides: a menorah, a Chinese peddler with a carrying pole, a pagoda and a JWB star; the reverse printed with a short message.">
+      <figcaption>Chanuka greetings card, Jewish Welfare Board, 1945 — given to refugee children in Shanghai by "big brothers" in the American army, printed in English, Hebrew and Chinese. The reverse is signed "An American Jewish Soldier." The dollar is still tucked behind it.
+      <span class="ref">United States Holocaust Memorial Museum · 03665</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/bookseller.jpg" alt="A boy standing beside a seated man at a street stall hung with newspapers and printed sheets.">
+      <figcaption>Harry Fiedler with a bookseller and fortune-teller, Tongshan Road, 1946 — the street the Goldstaubs lived on.
+      <span class="ref">United States Holocaust Memorial Museum · 04106</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="img/marinefalcon.jpg" alt="Photograph of people in coats and caps crowded at a ship's rail, looking out.">
+      <figcaption>A last farewell from the deck of the <i>Marine Falcon</i>, Shanghai, January 1947. Photographed for CNRRA, the Chinese National Relief and Rehabilitation Administration.
+      <span class="ref">United Nations Archives, AG-018 UNRRA, S-0801-0001-21-00069, CNRRA / 329 · Photograph by Larry Gahn</span></figcaption>
+    </figure>
+  </div>
+
+  <h2>Practical</h2>
+  <dl class="facts">
+    <div><dt>Medium</dt><dd>Archival reproductions printed on rigid panels, matte. Interpretive text prints with them. No originals, no vitrines, no glass.</dd></div>
+    <div><dt>Format</dt><dd>Research is complete, but nothing is fabricated yet, so this adapts to the space. The objects print at whatever size and onto whatever substrate the wall calls for, and sections drop out cleanly to fit a shorter run. The hang offered here is about 20 linear feet; at full length, 76 documents and photographs run to roughly 40.</dd></div>
+    <div><dt>Availability</dt><dd>Available any time through 22 September 2027.</dd></div>
+  </dl>
+
+  <h2>Rights</h2>
+  <p class="note">Reproduction permissions secured from the Leo Baeck Institute (granted 22 September 2026, credited "Courtesy of the Leo Baeck Institute"); Yad Vashem (granted 6 October 2026, fee waived, credited "Yad Vashem Photo Archive, Jerusalem" with the item's archival signature); Historical Photographs of China, University of Bristol (granted, fees waived); The Bancroft Library, UC Berkeley; and the Edmund S. Muskie Archives, Bates College. United States Holocaust Memorial Museum material is cleared for non-commercial exhibition use under the museum’s own Terms of Use, §C. United Nations Archives material carries no publication restriction under that archive’s stated terms. Others are pending. Every image on this page is a reproduction; no originals travel. A full object list with each item's caption and permission status is available on request, as is a hanging plan once a space is known.</p>
+
+  <h2>Contact</h2>
+  <p class="contact">joyce_fu@alumni.brown.edu</p>
+
+  <footer>The Paper Haven · Curated by Joyce Fu · Proposal page, October 2026</footer>
+
+</div>
+
+</body></html>
