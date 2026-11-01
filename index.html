@@ -328,6 +328,52 @@
   .watch-link a{display:inline-block;border:1px solid var(--accent);padding:.55rem .9rem;border-radius:.4rem;text-decoration:none;font-weight:600}
   .watch-link a:hover{background:var(--panel)}
   .watch-link span{font-size:.78rem;color:var(--muted)}
+
+  /* Editorial reading widths and balanced process layouts. */
+  .wrap{max-width:64rem}
+  .lede,.bio,.wnarr,.phtext,.work-facts{max-width:40rem}
+  .breakdown,.mm,.stagewrap{max-width:59rem}
+  .mm{padding:clamp(1rem,3vw,2rem)}
+  .mnode,.mend{max-width:35rem;width:100%;min-width:0}
+  .manno{max-width:38rem;margin-top:1.3rem;padding-top:1rem}
+  .mnode + .mnode,.mend{margin-top:1.5rem}
+  .mnode + .mnode::before,.mend::before{top:-1.5rem;height:1.5rem}
+  .chatband{max-width:35rem;width:100%;height:6rem;margin:1rem auto;padding:.6rem;
+    border:1px solid #34343b;border-radius:.4rem;background:rgba(0,0,0,.25);
+    mask-image:none;-webkit-mask-image:none;position:relative;min-width:0}
+  .chatband .roll{white-space:normal;overflow-wrap:anywhere;font-size:.7rem;line-height:1.5;color:#99999f;padding:0}
+  .chatband.b2 .roll{color:#aaa493}
+  .chatband .roll b{color:#b9a3e3}
+  .chatband.b2 .roll b{color:#e58b7d}
+  .world.nushu{padding:1.3rem}
+  .world.nushu .nintro{max-width:38rem;text-align:left;margin:.6rem auto 0}
+  .nwordgrid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:38rem;gap:.65rem;margin:.8rem auto 1.3rem}
+  .nword{min-width:0;justify-content:flex-start;text-align:left;padding:.65rem;gap:.6rem}
+  .nword .wl{min-width:0;overflow-wrap:anywhere}
+  .nword .wl b{margin:0 0 .25rem}
+  .world.nushu .nvocab-label{max-width:38rem;margin:1.3rem auto .6rem;line-height:1.6}
+  .nphrase-list{max-width:38rem;margin:.7rem auto 0}
+  .script-preview{max-width:36rem;margin:1.3rem 0}
+  .script-sheet{display:block;padding:1.7rem .6rem;background:#fff;border:1px solid var(--line);border-radius:.4rem}
+  .scriptpage{width:100%;height:auto;max-width:none;max-height:none;object-fit:contain;margin:0;border:0;border-radius:0}
+  .script-preview figcaption{font-size:.8rem;color:var(--muted);margin-top:.7rem}
+  .script-preview figcaption a{display:inline-block;margin-top:.3rem}
+  @media(min-width:900px){
+    #mermaid .mm{display:grid;grid-template-columns:minmax(0,1fr) 12rem;gap:1.5rem 1.2rem;align-items:start}
+    #mermaid .mhint{grid-column:1/-1;margin-bottom:0}
+    #mermaid .mnode,#mermaid .mend,#mermaid .manno{grid-column:1;margin:0;width:100%}
+    #mermaid .chatband{grid-column:2;margin:0;height:8rem}
+    #mermaid .chatband.b1{grid-row:2}
+    #mermaid .chatband.b2{grid-row:8}
+  }
+  @media(max-width:600px){
+    .nwordgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .nword{gap:.35rem;padding:.55rem .4rem}
+    .nword img{width:28px;flex-basis:28px;height:46px}
+    .world.nushu{padding:1rem .65rem}
+    .script-sheet{padding:1.2rem .25rem}
+    .nphrase-glyph{max-width:100%;height:auto;max-height:44px;object-fit:contain}
+  }
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500;700&family=Noto+Serif+SC:wght@600&display=swap">
 </head>
@@ -659,9 +705,12 @@
     <div class="phtext">
       <p class="phsub">The script that came out of it — <em>Little Vienna</em>, Act I</p>
       <p class="phbody">The research became a screenplay.</p>
-      <blockquote class="pull">"The city wakes in layers."<cite>Little Vienna, Act I — Exile and Arrival (1933–1939)</cite></blockquote>
-      <img class="scriptpage" src="img/script-act1.png" alt="Little Vienna, Act I — opening screenplay pages" loading="lazy">
-      <p class="note light">From my screenplay <em>Little Vienna</em>, Act I — the opening pages.</p>
+      <figure class="script-preview">
+        <a class="script-sheet" href="img/script-act1.png" target="_blank" rel="noopener" aria-label="Enlarge Little Vienna screenplay excerpt">
+          <img class="scriptpage" src="img/script-act1.png" alt="Little Vienna, Act I — screenplay excerpt showing the opening Hongkou street scene and hospital scene" loading="lazy">
+        </a>
+        <figcaption><em>Little Vienna</em>, Act I · Exile and Arrival (1933–1939) · screenplay excerpt<br><a href="img/script-act1.png" target="_blank" rel="noopener">Enlarge screenplay excerpt ↗</a></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -746,7 +795,7 @@
     <p class="bio">She assembles films from borrowed material — appropriated archive, double exposure, videogame interfaces — leaving the seams of construction visible, and dropping a tiny composited version of herself into the frame as a recurring signature.</p>
     <p class="bio">Raised across diplomatic communities, she has lived in some seventy countries; the longest she stayed anywhere was three years in South Bend, Indiana. She holds an MA from Brown University (2026) and a BA from the University of Notre Dame. Her short documentary <em>After the Race</em> was nominated for a NATAS Chicago/Midwest College Student Production Award (2024); her films have screened in official competition at the Flickers' Rhode Island International Film Festival and across the experimental circuit.</p>
     <p class="bio">Her translation work spans a queer literary anthology and the subtitle and dub translation for the North American distribution of <em>Wukong Warrior</em>, and her research on Jewish refugees in Shanghai during WWII became the exhibition <em>The Paper Haven</em>. Her films are produced under Ribcage Pictures, which also publishes <em>Forty Episodes</em>, her licensing atlas for Chinese drama. She is developing <em>Signal's Universe</em>, an animated series rooted in musicology, and performs stand-up at Flappers in Los Angeles and Rooster in the Bay Area.</p>
-    <p class="bio biolegal">Eden Z. Jianpei is the artist name of Joyce Fu.</p>
+    <p class="bio biolegal"><strong>Eden Z. (漳) · 鑑霈</strong> <em>is the artist name of Joyce YY Fu.</em></p>
   </section>
 
   <footer>
