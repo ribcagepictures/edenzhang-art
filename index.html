@@ -374,6 +374,21 @@
     .script-sheet{padding:1.2rem .25rem}
     .nphrase-glyph{max-width:100%;height:auto;max-height:44px;object-fit:contain}
   }
+  /* Fruit: materials and process, with readable text and uncropped frames. */
+  #fruit .fruit-chapter{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:1.5rem;padding:2rem 0;border-top:1px solid var(--line)}
+  #fruit .fruit-chapter>div{min-width:0;max-width:40rem}
+  #fruit h3{font:500 1.6rem/1.25 var(--disp);margin:0 0 1rem}
+  #fruit h4{font:500 1.15rem/1.4 var(--disp);margin:1.5rem 0 .5rem}
+  #fruit .fruit-materials{margin:0}
+  #fruit .fruit-materials>div{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+  #fruit dd{margin:0;color:var(--muted);font-size:.9rem}
+  #fruit .fruit-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;padding:0;list-style:none;font-size:.9rem;margin:1.5rem 0}
+  #fruit .fruit-steps strong{display:block;font-family:var(--mono);font-size:.75rem;margin-bottom:.5rem;color:var(--accent)}
+  #fruit .fruit-frame{margin:1.5rem 0}
+  #fruit .fruit-frame img{display:block;width:100%;height:auto}
+  #fruit figcaption{font-size:.8rem;color:var(--muted);margin-top:.5rem}
+  #fruit .fruit-pull{font:400 clamp(1.35rem,3vw,1.8rem)/1.4 var(--disp);border-left:2px solid var(--accent);padding-left:1.25rem;margin:1.5rem 0 0}
+  @media(max-width:640px){#fruit .fruit-chapter{grid-template-columns:1fr;gap:.5rem}#fruit .fruit-materials>div,#fruit .fruit-steps{grid-template-columns:1fr;gap:.5rem}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500;700&family=Noto+Serif+SC:wght@600&display=swap">
 </head>
@@ -416,37 +431,36 @@
   <section id="fruit" class="work">
     <div class="whead"><span class="wnum">01</span><h2>"fruit"</h2><span class="wtag">found-footage film · 2026</span></div>
     <p class="work-facts">2026 · 3:24 · Director, editor · archival found footage with green-screen performance</p>
+    <p class="wnarr"><em>"fruit"</em> is an archival film about existence as a blip in the matrix, nature as insurmountable, and the nihilist certainty that everything is as it should be.</p>
     <p class="watch-link"><a href="https://vimeo.com/1225184672" target="_blank" rel="noopener">Watch film · 3:24 ↗</a><span>Password-protected screener · viewing password required.</span></p>
-    <p class="wnarr"><em>"fruit"</em> is an archival film about existence as a blip in the matrix, nature as insurmountable, and the nihilist certainty that everything is as it should be. I green-screened myself — small, vaping — over a torrent of borrowed footage: the 1927 silent exploitation film <em>Is Your Daughter Safe?</em>, the instructional documentary "The Growth of Plants," a nuclear mushroom cloud, Barney, a cosmic tardigrade — all under Werner Herzog's monologue from <em>Burden of Dreams</em> (1982) on the misery of the jungle. I composite my own filmed performance into borrowed footage; the compositing <em>is</em> the argument — the human as a tiny, unbothered blip in an overwhelming, amoral nature.</p>
-    <div class="breakdown">
-      <div class="marquee"><span class="mq">we are challenging nature itself &mdash; and it hits back &middot; it is full of obscenity &middot; fornication and asphyxiation and choking and fighting for survival &middot; the birds do not sing, they screech in pain &middot; there is no harmony in the universe &middot; I love it &mdash; against my better judgment &middot; we are challenging nature itself &mdash; and it hits back &middot; it is full of obscenity &middot; fornication and asphyxiation and choking and fighting for survival &middot; the birds do not sing, they screech in pain &middot; there is no harmony in the universe &middot; I love it &mdash; against my better judgment &middot; </span></div>
-      <p class="mqcap">Werner Herzog's <em>Burden of Dreams</em> (1982) monologue over borrowed footage &mdash; borrowed images, my performance, and the composite frame</p>
-      <div class="shot">
-        <img src="img/fruit-1.jpg" alt="black-and-white time-lapse of plant stems, a tiny red figure composited below">
-        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9312; <em>The Growth of Plants</em> (1927)</span><p>An instructional documentary &mdash; stems climbing, seeds splitting open in time-lapse. I am composited in, small and in red, standing under the growth.</p></div></div>
+    <div class="fruit-chapter">
+      <p class="eyebrow">01 / Materials</p>
+      <div><h3>What the film is made from.</h3>
+        <dl class="fruit-materials">
+          <div><dt><em>Burden of Dreams</em> (1982)</dt><dd>Werner Herzog’s monologue on the misery of the jungle provides the spoken thread.</dd></div>
+          <div><dt><em>Is Your Daughter Safe?</em> (1927)</dt><dd>Silent exploitation footage placed against the narration.</dd></div>
+          <div><dt><em>The Growth of Plants</em></dt><dd>Instructional imagery of stems growing and seeds splitting.</dd></div>
+          <div><dt>Microscopy footage</dt><dd>Egg cells, sperm, and microscopic life.</dd></div>
+          <div><dt>Natural disasters &amp; human-made explosions</dt><dd>Eruptions and other natural disasters, alongside nuclear explosions.</dd></div>
+          <div><dt>Two viral videos</dt><dd>Barney singing a Barney song; a man juggling apples and taking a bite each time an apple passes his mouth.</dd></div>
+          <div><dt>My green-screen performance</dt><dd>The body I film and place inside the borrowed material.</dd></div>
+        </dl>
       </div>
-      <div class="shot">
-        <img src="img/fruit-2.jpg" alt="black-and-white silent-film figures by rock, a tiny red figure composited below">
-        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9313; <em>Is Your Daughter Safe?</em> (1927)</span><p>A silent exploitation film &mdash; the "obscenity" and "fornication" Herzog narrates, lifted whole and run underneath him.</p></div></div>
+    </div>
+    <div class="fruit-chapter">
+      <p class="eyebrow">02 / Compositing</p>
+      <div><h3>Inside a composite.</h3>
+        <ol class="fruit-steps"><li><strong>Source</strong>Borrowed plant footage.</li><li><strong>Performance</strong>My body filmed against a green screen.</li><li><strong>Composite</strong>I place my figure beneath the growth.</li></ol>
+        <figure class="fruit-frame"><img src="img/fruit-1.jpg" alt="Finished composite: a tiny red figure beneath black-and-white growing plants" loading="lazy"><figcaption>Finished composite · the body beneath the plants.</figcaption></figure>
+        <blockquote class="fruit-pull">The compositing is the argument: the human as a tiny, unbothered blip in an overwhelming, amoral nature.</blockquote>
       </div>
-      <div class="shot">
-        <img src="img/fruit-4.jpg" alt="microscopy of egg cells and sperm, a tiny figure composited below">
-        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9314; archival microscopy &mdash; egg &amp; sperm fertilization</span><p>Cells under glass, the egg and the sperm. Creation at the scale where it looks like weather, not miracle.</p></div></div>
-      </div>
-      <div class="shot">
-        <img src="img/fruit-3.jpg" alt="Werner Herzog's face superimposed into green foliage, a tiny red figure below">
-        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9315; Herzog, superimposed into the growing plants</span><p>His face from <em>Burden of Dreams</em> dissolved into the leaves &mdash; the human body made a plant body, the monologue's spine made literal.</p></div></div>
-      </div>
-      <div class="shot">
-        <img src="img/fruit-5.jpg" alt="an erupting volcano, Joyce doubled and dancing in red in the foreground">
-        <div class="desc"><span class="arrow">&#8594;</span><div><span class="slabel">&#9316; the volcano &mdash; the power of nature</span><p>A real eruption. I dance over the disaster, doubled, unbothered &mdash; the nihilist shrug the whole film rides on: everything is as it should be.</p></div></div>
-      </div>
-      <div class="legend">
-        <span><b>source imagery</b> borrowed footage</span>
-        <span><b>self</b> composited small &middot; vaping</span>
-        <span><b>spine</b> Herzog, <em>Burden of Dreams</em></span>
-        <span><b>argument</b> the human = a blip</span>
-        <span><b>tone</b> deadpan nihilist</span>
+    </div>
+    <div class="fruit-chapter">
+      <p class="eyebrow">03 / Editing decisions</p>
+      <div><h3>What changes when I enter the frame.</h3>
+        <h4>Superimposition</h4><p>Herzog’s face dissolves into foliage. The speaker becomes part of the landscape his voice describes.</p>
+        <figure class="fruit-frame"><img src="img/fruit-3.jpg" alt="Herzog’s face superimposed into green foliage, with a tiny red figure below" loading="lazy"><figcaption>Finished frame · a face in the foliage.</figcaption></figure>
+        <h4>Performance</h4><p>Against an eruption, my doubled figure dances. The gesture carries the film’s deadpan response to the force of nature.</p>
       </div>
     </div>
   </section>
